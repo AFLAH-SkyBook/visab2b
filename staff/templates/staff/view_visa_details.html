@@ -1,0 +1,77 @@
+{% extends 'dashboard.html' %}
+{% load tailwind_filters %}
+
+{% block title %}View visa details{% endblock title %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-content">
+        <!-- Start Content -->
+
+        <div class="pricing-table">
+            <h6 class="mx-3 text-uppercase">visa details of the application   &emsp; &emsp; &emsp; &emsp; Application ID: {{ application.application_id }}  &emsp; &emsp; Applicant name: {{ application.applicant_name }}</h6>
+            <hr/>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                
+                {% for visa in visas %}
+                <div class="col mb-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-header bg-primary pt-3">
+                            <h5 class="card-title text-white text-uppercase text-center">Applicant {{ forloop.counter }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Name: <span class="fw-bold">{{ visa.name }}</span></li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Phone: {{ visa.phone }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Email: {{ visa.email }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Nationality: {{ visa.nationality }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Relation to applicant: {{ visa.relation_to_applicant }}</li>
+                                <hr>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.photo }}" target="_blank">Photo </a></li>
+                                <div class="row">
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.passport1 }}" target="_blank">Passport1 </a></li>
+                                    </div>
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.passport2 }}" target="_blank">Passport2 </a></li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.onward_ticket }}" target="_blank">onward ticket </a></li>
+                                    </div>
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.return_ticket }}" target="_blank">return ticket </a></li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document1 }}" target="_blank">document1 </a></li>
+                                    </div>
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document2 }}" target="_blank">document2 </a></li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document3 }}" target="_blank">document3 </a></li>
+                                    </div>
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document4 }}" target="_blank">document4 </a></li>
+                                    </div>
+                                </div>
+                            </ul>
+                            <div class="d-grid mt-2"> <div class="btn btn-outline-danger px-5 radius-30">{{ visa.status }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+
+        <!-- End Content -->
+    </div>
+</div>
+{% endblock content %}

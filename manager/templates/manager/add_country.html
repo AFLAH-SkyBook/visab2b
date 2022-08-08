@@ -1,0 +1,58 @@
+{% extends 'dashboard.html' %}
+{% load tailwind_filters %}
+
+{% block title %}Add country{% endblock title %}
+
+{% block content %}
+	<div class="page-wrapper">
+		<div class="page-content">
+			<!-- Start Content -->
+
+
+            <h4 class="text-center my-4"> Add a visa country </h4>
+			<div class="row">
+				<div class="col-xl-7 mx-auto">
+					<div class="card border-top border-0 border-4 border-info">
+						<div class="card-body p-5">
+
+							<form class="row g-3" method="POST">
+
+								{% csrf_token %}
+
+								<div class="col-md-12">
+									<label for="name" class="form-label">Country name</label>
+									{{ form.name }}
+								</div>
+
+								<div class="col-md-6">
+									<label for="name" class="form-label">Min processing time(in days)</label>
+									{{ form.min_processing_time }}
+								</div>
+
+								<div class="col-md-6">
+									<label for="name" class="form-label">Max processing time(in days)</label>
+									{{ form.max_processing_time }}
+								</div>
+
+								<div class="col-md-12">
+									<label for="name" class="form-label">Starting from(in $)</label>
+									{{ form.starting_from }}
+								</div>
+								
+								<div class="col-12">
+									<button type="submit" class="btn btn-primary px-5">Add</button>
+								</div>
+							</form>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- END CONTENT -->
+		</div>
+	</div>
+	<!--end page wrapper -->
+{% endblock content %}

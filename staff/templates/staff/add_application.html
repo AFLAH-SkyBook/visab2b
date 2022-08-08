@@ -1,0 +1,129 @@
+{% extends "dashboard.html" %}
+{% load tailwind_filters %}
+
+{% block title %}Add application{% endblock title %}
+
+{% block content %}
+	<div class="page-wrapper">
+		<div class="page-content">
+				<!-- Start Content -->
+
+                <div class="row">
+					<div class="col-xl-7 mx-auto">
+						<div class="card border-top border-0 border-4 border-info">
+							<div class="card-body p-5 pt-4">
+
+								{% if form1 %}
+								<h4 class="text-lg text-center mb-4"> Select visa country to add an application</h4>
+                                <form class="row g-3" method="POST">
+
+                                    {% csrf_token %}
+
+									<div class="col-md-12">
+										<label for="application_status" class="form-label">Visa country</label>
+										{{ form1.country_name }}
+									</div>
+									
+									<div class="col-12">
+										<button type="submit" class="btn btn-primary px-4">Next</button>
+									</div>
+								</form>
+								{% endif %}
+
+
+								{% if country %}
+								<h4 class="text-lg text-center mb-4"> Select visa type to add an application</h4>
+                                <form class="row g-3" method="POST">
+
+                                    {% csrf_token %}
+
+									<div class="col-md-12">
+										<label for="visa_country" class="form-label">Visa country</label>
+										<div class="input-group">
+											<select id="visa_country" class="form-control" name="visa_country">
+												<option value="{{ country }}">{{ country }}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<label for="visa_type" class="form-label">Visa type</label>
+										<div class="input-group">
+											<select id="visa_type" class="form-control form-select" name="visa_type">
+												{% for type in types %}
+												<option value="{{ type.type }}">{{ type.type }}</option>
+												{% endfor %}
+											</select>
+										</div>
+									</div>
+									
+									<div class="col-12">
+										<button type="submit" class="btn btn-primary px-4">Next</button>
+									</div>
+								</form>
+								{% endif %}
+								
+
+								{% comment %} {% if form2 %}
+								<h4 class="text-lg text-center mb-4"> Add primary details to new application</h4>
+                                <form class="row g-3" method="POST">
+
+                                    {% csrf_token %}
+
+									<div class="col-md-12">
+										<label for="applicant_name" class="form-label">Visa country</label>
+									</div>
+
+									<div class="col-md-12">
+										<label for="applicant_name" class="form-label">Visa type</label>
+									</div>
+
+									<input type="hidden" name="visa_type1" value="{{ visa_type }}">
+									<input type="hidden" name="visa_country1" value="{{ visa_country }}">
+
+									<div class="col-md-12">
+										<label for="applicant_name" class="form-label">Applicant name</label>
+										{{ form2.applicant_name }}
+									</div>
+
+									<div class="col-md-12">
+										<label for="applicant_phone" class="form-label">Applicant phone</label>
+										{{ form2.applicant_phone }}
+									</div>
+
+									<div class="col-md-12">
+										<label for="applicant_email" class="form-label">Applicant email</label>
+										{{ form2.applicant_email }}
+									</div>
+
+									<div class="col-md-12">
+										<label for="applicant_email" class="form-label">Nationality</label>
+										{{ form2.applicant_nationality }}
+									</div>
+
+									<div class="col-md-12">
+										<label for="no_of_persons" class="form-label">No of persons</label>
+										{{ form2.no_of_persons }}
+									</div>
+									
+									<div class="col-12">
+										<button type="submit" class="btn btn-primary px-4">Submit</button>
+									</div>
+								</form>
+								{% endif %} {% endcomment %}
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+			<!-- END CONTENT -->
+		</div>
+	</div>
+	
+	<!--end page wrapper -->
+        
+{% endblock content %}
+

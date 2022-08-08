@@ -1,0 +1,45 @@
+{% extends "dashboard.html" %}
+{% load tailwind_filters %}
+
+{% block title %}Update application status{% endblock title %}
+
+{% block content %}
+	<div class="page-wrapper">
+		<div class="page-content">
+				<!-- Start Content -->
+
+                <h4 class="text-center my-5"> Update the Application status of {{ application.applicant_name }}</h4>
+                <div class="row">
+					<div class="col-xl-7 mx-auto">
+						<div class="card border-top border-0 border-4 border-info">
+							<div class="card-body p-5">
+
+                                <form class="row g-3" method="POST">
+
+                                    {% csrf_token %}
+
+									<div class="col-md-12">
+										<label for="application_status" class="form-label">Application status</label>
+										{{ form.application_status }}
+									</div>
+									
+									<div class="col-12">
+										<button type="submit" class="btn btn-primary px-5">Update</button>
+									</div>
+								</form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+			<!-- END CONTENT -->
+		</div>
+	</div>
+	
+	<!--end page wrapper -->
+        
+{% endblock content %}
+

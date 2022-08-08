@@ -1,0 +1,789 @@
+{% extends "dashboard.html" %}
+
+{% block title %}Dashboard home{% endblock title %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-content">
+        <!-- Start Content -->
+
+            {% if messages %}
+            <div class="alert border-0 border-start border-5 border-success alert-dismissible fade show py-2">
+                    {% for message in messages %}
+                    <div class="d-flex align-items-center">
+                            <div class="font-35 text-success"><i class='bx bxs-check-circle'></i>
+                            </div>
+                            <div class="ms-3">
+                                    <h6 class="mb-0 text-success">Success</h6>
+                                    {% if message.tags %}
+                                    <div>{{ message }}</div>
+                                    {% endif %}
+                            </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    {% endfor %}
+            </div>
+            {% endif %}
+
+
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3 mx-3">
+                <div class="breadcrumb-title pe-3">Dashboard</div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Home</li>
+                            {% if country %}
+                                <li class="breadcrumb-item active" aria-current="page"><span class="fw-bold text-primary">filter by: </span>{{ country }} (country)</li>
+                            {% endif %}
+                            {% if branch %}
+                                <li class="breadcrumb-item active" aria-current="page"><span class="fw-bold text-primary">filter by: </span>{{ branch }} (branch)</li>
+                            {% endif %}
+                            {% if staff %}
+                                <li class="breadcrumb-item active" aria-current="page"><span class="fw-bold text-primary">filter by: </span>{{ staff }} (staff)</li>
+                            {% endif %}
+
+                            <li class="breadcrumb-item active" aria-current="page">
+                            {% if startDate %}
+                            <span class="fw-bold text-primary">from: </span>{{ startDate }}
+                            {% endif %}
+                            {% if endDate %}<span class="fw-bold text-primary"> to: </span>{{ endDate }}
+                            {% endif %}
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    
+                    <button type="button" class="btn btn-primary radius-30 dropdown-toggle px-4" data-bs-toggle="dropdown"><i class='bx bx-calendar'></i> Date Range</button>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+
+                        <form method="GET" action="{% url 'report:date-filter' %}">
+                            {% comment %} <input class="form-check-input" type="checkbox" id="csv_export" name="export" value="csv">
+                            <label class="form-check-label" for="export">export to csv</label> {% endcomment %}
+
+                            <button class="dropdown-item" name="dateBtn" value="1">Today</button>
+                            <button class="dropdown-item" name="dateBtn" value="2">Yesterday</button>
+                            <button class="dropdown-item" name="dateBtn" value="3">Last 7 days</button>
+                            <button class="dropdown-item" name="dateBtn" value="4">Last 30 days</button>
+                            <button class="dropdown-item" name="dateBtn" value="5">This month</button>
+                            <button class="dropdown-item" name="dateBtn" value="6">Last month</button>
+                            <button class="dropdown-item" name="dateBtn" value="7">Last 90 days</button>
+                            <button class="dropdown-item" name="dateBtn" value="8">This year</button>
+                            <button class="dropdown-item" name="dateBtn" value="9">Last year</button>
+
+                        </form>
+                        
+                        <div class="dropdown-divider"></div>
+                        <button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#dateFormModal">Custom range</button>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary radius-30 dropdown-toggle px-4" data-bs-toggle="dropdown">Filter by</button>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+                            <a class="dropdown-item" href="{% url 'staff:dashboard-home' %}">None</a>
+                            {% if custom_date_range %}
+
+                            {% else %}
+                                <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#countryFormModal">Country</a>
+                                <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#branchFormModal">Branch</a>
+                                <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#staffFormModal">Staff</a>
+                            {% endif %}
+                            <div class="dropdown-divider"></div>	<a class="dropdown-item" href="{% url 'report:staff-report' %}">Custom report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Date Range Form MODAL -->
+            <div class="modal fade" id="dateFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Date Range</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form class="row g-3 mx-2" method="GET" action="{% url 'report:date-filter' %}">
+                            <div class="modal-body">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="date_from" class="form-label">From</label>
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" name="date_from" placeholder="First Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="date_to" class="form-label">To</label>
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" name="date_to" placeholder="Last Name" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion mt-3" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                Add Filter
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <div class="col-md-12 mt-3">
+                                                    <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-plane-alt' ></i></span>
+                                                        <select id="country" class="form-control" name="country">
+                                                            <option value="" selected>Select Country</option>
+                                                            {% for country in countries %}
+                                                            <option value="{{ country.name }}">{{ country.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mt-3">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg-transparent"><i class='bx bxs-buildings' ></i></span>
+                                                        <select id="branch" class="form-control" name="branch">
+                                                            <option value="" selected>Select branch</option>
+                                                            {% for branch in branches %}
+                                                            <option value="{{ branch.name }}">{{ branch.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mt-3">
+                                                    <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-user' ></i></span>
+                                                        <input type="search" class="form-control" name="staff" placeholder="Enter Staff name..." />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary px-3">Filter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Country Form MODAL -->
+            <div class="modal fade" id="countryFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Select country</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form class="row g-3 mx-2" method="GET" action=".">
+                            <div class="modal-body">
+                                <div class="col-md-12">
+                                    <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-plane-alt' ></i></span>
+                                        <select id="country" class="form-control" name="country">
+                                            <option value="" selected>Select Country</option>
+                                            {% for country in countries %}
+                                            <option value="{{ country.name }}">{{ country.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary px-3">Filter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Branch Form MODAL -->
+            <div class="modal fade" id="branchFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Select branch</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form class="row g-3 mx-2" method="GET" action=".">
+                            <div class="modal-body">
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-transparent"><i class='bx bxs-buildings' ></i></span>
+                                        <select id="branch" class="form-control" name="branch">
+                                            <option value="" selected>Select branch</option>
+                                            {% for branch in branches %}
+                                            <option value="{{ branch.name }}">{{ branch.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary px-3">Filter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- staff Form MODAL -->
+            <div class="modal fade" id="staffFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Search staff</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form class="row g-3 mx-2" method="GET" action=".">
+                            <div class="modal-body">
+                                <div class="col-md-12">
+                                    <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-user' ></i></span>
+                                        <input type="search" class="form-control" name="staff" placeholder="Enter Staff name..." />
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary px-3">Filter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card radius-10">
+                <div class="card-content">
+                    <div class="row row-group row-cols-1 row-cols-xl-4">
+                        
+                        <div class="col-lg-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0">Total primary applications</p>
+                                        <h4 class="mb-0 text-primary fw-bold">{{ total_applications_count }}</h4>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <a href="{% url 'staff:applications' %}" type="button" class="btn btn-outline-primary px-3 py-2"><i class='bx bx-paper-plane fs-3 me-0'></i>
+                                        </a>  
+                                    </div>                                        
+                                </div>
+                                <div class="progress radius-10 my-2" style="height:4px;">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
+                                </div>
+                                <!--<p class="mb-0 font-13">+2.5% from last week</p>-->
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0">New primary applications</p>
+                                        <h4 class="mb-0 text-danger">{{ new_applications_count }}</h4>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <a href="{% url 'staff:new-applications' %}" type="button" class="btn btn-outline-danger px-3 py-2"><i class='bx bx-paper-plane fs-3 me-0'></i>
+                                        </a> 
+                                    </div>
+                                </div>
+                                <div class="progress radius-10 my-2" style="height:4px;">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ per_new_applications }}%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0">Total Visa applications</p>
+                                        <h4 class="mb-0 text-primary fw-bold">{{ total_visa_applications_count }}</h4>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <a href="{% url 'staff:all-visa-applications' %}" type="button" class="btn btn-outline-primary px-3 py-2"><i class='bx bxs-plane-alt fs-3 me-0'></i>
+                                        </a> 
+                                    </div>
+                                </div>
+                                <div class="progress radius-10 my-2" style="height:4px;">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0">New Visa applications</p>
+                                        <h4 class="mb-0 text-danger">{{ new_visa_applications_count }}</h4>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <a href="{% url 'staff:new-visa-applications' %}" type="button" class="btn btn-outline-danger px-3 py-2"><i class='bx bxs-plane-alt fs-3 me-0'></i>
+                                        </a> 
+                                    </div>
+                                </div>
+                                <div class="progress radius-10 my-2" style="height:4px;">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ per_new_visa_applications }}%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-2">
+                <div class="card-body mb-1 pt-4 pb-0">
+
+                    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+                    <div id="chart" style="width: 1300px; height: 200px;">
+                    </div>
+                    <script>
+
+                        var options = {
+                            title: {
+                                text: 'VISA APPLICATION STATUS',
+                                align: 'center',
+                                margin: 10,
+                                offsetX: 0,
+                                offsetY: 0,
+                                floating: false,
+                                style: {
+                                    fontSize:  '18px',
+                                    fontWeight:  'strong',
+                                    fontFamily:  undefined,
+                                    color:  '#263238'
+                                },
+                            },
+                            series: [
+                                {
+                                name: 'visa applications',
+                                data: [{{ da }}, {{ sv }}, {{ va }}, {{ ar }}],
+                                color: "#2BBBAD",
+                                }, 
+                            ],
+                            chart: {
+                            type: 'bar',
+                            height: 280
+                            },
+                            plotOptions: {
+                            bar: {
+                                borderRadius: 3,
+                                horizontal: true,
+                            }
+                            },
+                            dataLabels: {
+                            enabled: false,
+                            },
+                            xaxis: {
+                            categories: ['Documents added', 'Sent for visa processing', 'Visa approved', 'Application rejected',
+                            ],
+                            },
+                        };
+                    
+                        var chart = new ApexCharts(document.querySelector("#chart"), options);
+                        chart.render();
+
+                    </script>
+
+
+                </div>
+
+                <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 mb-3">
+                    <div class="col">
+                        <div class="radius-10">
+                            <div class="card-body pt-0">
+                                <div class="text-center">
+                                    <p class="my-1 fw-bold">Documents added</p>
+                                    {% if home %}
+                                        <a href="{% url 'staff:new-visa-applications' %}" class="widgets-icons rounded-circle mx-auto bg-light-primary border border-primary text-primary mt-3">
+                                            <p class="m-4 fw-bold">{{ da }}</p>
+                                        </a>
+                                    {% else %}
+                                        <button class="widgets-icons rounded-circle mx-auto bg-light-primary border border-primary text-primary mt-3" data-bs-toggle="modal" data-bs-target="#daModal">
+                                            <p class="m-4 fw-bold">{{ da }}</p>
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="radius-10">
+                            <div class="card-body pt-0">
+                                <div class="text-center">
+                                    <p class="my-1 fw-bold">Sent for visa processing</p>
+                                    {% if home %}
+                                        <a href="{% url 'staff:processed-visas' %}" class="widgets-icons rounded-circle mx-auto bg-light-warning border border-warning text-warning mt-3">
+                                            <p class="m-4 fw-bold">{{ sv }}</p>
+                                        </a>
+                                    {% else %}
+                                        <button class="widgets-icons rounded-circle mx-auto bg-light-warning border border-warning text-warning mt-3" data-bs-toggle="modal" data-bs-target="#svModal">
+                                            <p class="m-4 fw-bold">{{ sv }}</p>
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="radius-10">
+                            <div class="card-body pt-0">
+                                <div class="text-center">
+                                    <p class="my-1 fw-bold">Visa approved</p>
+                                    {% if home %}
+                                        <a href="{% url 'staff:approved-visas' %}" class="widgets-icons rounded-circle mx-auto bg-light-success border border-success text-success mt-3">
+                                            <p class="m-4 fw-bold">{{ va }}</p>
+                                        </a>
+                                    {% else %}
+                                        <button class="widgets-icons rounded-circle mx-auto bg-light-success border border-success text-success mt-3" data-bs-toggle="modal" data-bs-target="#vaModal">
+                                            <p class="m-4 fw-bold">{{ va }}</p>
+                                        </button>
+                                    {% endif %} 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="radius-10">
+                            <div class="card-body pt-0">
+                                <div class="text-center">
+                                    <p class="my-1 fw-bold">Application rejected</p>
+                                    {% if home %}
+                                        <a href="{% url 'staff:rejected-visas' %}" class="widgets-icons rounded-circle mx-auto bg-light-danger border border-danger text-danger mt-3">
+                                            <p class="m-4 fw-bold">{{ ar }}</p>
+                                        </a>
+                                    {% else %}
+                                        <button class="widgets-icons rounded-circle mx-auto bg-light-danger border border-danger text-danger mt-3" data-bs-toggle="modal" data-bs-target="#arModal">
+                                            <p class="m-4 fw-bold">{{ ar }}</p>
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col">
+                        <div class="card radius-10">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <h6 class="my-1">Status: 28</h6>
+                                    <div class="widgets-icons rounded-circle mx-auto bg-light-warning text-warning mb-3"><i class='bx bxl-dropbox'></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+
+            </div>
+
+            {% comment %} <form class="row g-3" method="GET" action=".">
+                <div class="col-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="csv_export" name="export" value="csv">
+                        <label class="form-check-label" for="csv_export">Export to CSV</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary px-5">Filter / Export</button>
+                </div>
+            </form> {% endcomment %}
+
+            {% if home %}
+
+            {% else %}
+
+                {% if da %}
+                <!-- Documents added applications table Modal -->
+                <div class="modal fade" id="daModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="mt-3">Date: <span class="fw-bold">{{ startDate }} - {{ endDate }} </span><span class="text-primary fw-bold"> Documents added applications</span></h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive mt-3">
+                                    <table class="table table-striped align-middle">
+                
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Application ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Visa country</th>
+                                            <th scope="col">Visa type</th>
+                                            <th scope="col">Current status</th>
+                                            <th scope="col">Done by</th>
+                                            <th scope="col">Branch</th>
+                                            <th scope="col">Docs upload time</th>
+                                        </tr>
+                                        </thead>
+                                
+                                        <tbody>
+                                
+                                        {% for application in da_applications %}
+                                            <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ application.application_id }}</td>
+                                            <td>{{ application.name }}</td>
+                                            <td>{{ application.visa_country }}</td>
+                                            <td>{{ application.type }}</td>
+                                            <td>{{ application.status }}</td>
+                                            <td>{{ application.upload_by }}</td>
+                                            <td>{{ application.upload_branch }}</td>
+                                            <td>{{ application.upload_date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                
+                                        </tbody>
+                                
+                                    </table>
+                                </div>
+                            </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if sv %}
+                <!-- Sent for processing applications table Modal -->
+                <div class="modal fade" id="svModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="mt-3">Date: <span class="fw-bold">{{ startDate }} - {{ endDate }} </span><span class="text-warning fw-bold"> Processing applications</span></h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive mt-3">
+                                    <table class="table table-striped align-middle">
+                
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Application ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Visa country</th>
+                                            <th scope="col">Visa type</th>
+                                            <th scope="col">Current status</th>
+                                            <th scope="col">Done by</th>
+                                            <th scope="col">Branch</th>
+                                            <th scope="col">Docs process time</th>
+                                        </tr>
+                                        </thead>
+                                
+                                        <tbody>
+                                
+                                        {% for application in sv_applications %}
+                                            <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ application.application_id }}</td>
+                                            <td>{{ application.name }}</td>
+                                            <td>{{ application.visa_country }}</td>
+                                            <td>{{ application.type }}</td>
+                                            <td>{{ application.status }}</td>
+                                            <td>{{ application.upload_by }}</td>
+                                            <td>{{ application.upload_branch }}</td>
+                                            <td>{{ application.process_date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                
+                                        </tbody>
+                                
+                                    </table>
+                                </div>
+                            </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if va %}
+                <!-- Visa approved applications table Modal -->
+                <div class="modal fade" id="vaModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="mt-3">Date: <span class="fw-bold">{{ startDate }} - {{ endDate }} </span><span class="text-success fw-bold"> Visa approved applications</span></h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive mt-3">
+                                    <table class="table table-striped align-middle">
+                
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Application ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Visa country</th>
+                                            <th scope="col">Visa type</th>
+                                            <th scope="col">Current status</th>
+                                            <th scope="col">Done by</th>
+                                            <th scope="col">Branch</th>
+                                            <th scope="col">Approved time</th>
+                                        </tr>
+                                        </thead>
+                                
+                                        <tbody>
+                                
+                                        {% for application in va_applications %}
+                                            <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ application.application_id }}</td>
+                                            <td>{{ application.name }}</td>
+                                            <td>{{ application.visa_country }}</td>
+                                            <td>{{ application.type }}</td>
+                                            <td>{{ application.status }}</td>
+                                            <td>{{ application.upload_by }}</td>
+                                            <td>{{ application.upload_branch }}</td>
+                                            <td>{{ application.approved_date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                
+                                        </tbody>
+                                
+                                    </table>
+                                </div>
+                            </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if ar %}
+                <!-- Application rejected applications table Modal -->
+                <div class="modal fade" id="arModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="mt-3">Date: <span class="fw-bold">{{ startDate }} - {{ endDate }} </span><span class="text-danger fw-bold"> Application rejected applications</span></h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive mt-3">
+                                    <table class="table table-striped align-middle">
+                
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Application ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Visa country</th>
+                                            <th scope="col">Visa type</th>
+                                            <th scope="col">Current status</th>
+                                            <th scope="col">Done by</th>
+                                            <th scope="col">Branch</th>
+                                            <th scope="col">Rejected time</th>
+                                        </tr>
+                                        </thead>
+                                
+                                        <tbody>
+                                
+                                        {% for application in ar_applications %}
+                                            <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ application.application_id }}</td>
+                                            <td>{{ application.name }}</td>
+                                            <td>{{ application.visa_country }}</td>
+                                            <td>{{ application.type }}</td>
+                                            <td>{{ application.status }}</td>
+                                            <td>{{ application.upload_by }}</td>
+                                            <td>{{ application.upload_branch }}</td>
+                                            <td>{{ application.rejected_date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                
+                                        </tbody>
+                                
+                                    </table>
+                                </div>
+                            </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+            {% endif %}
+
+            <h6 class="mt-3"><span class="fw-bold"> ALL APPLICATIONS</span></h6>
+            <div class="table-responsive mt-3">
+                <table class="table table-striped align-middle">
+
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Application ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Visa country</th>
+                        <th scope="col">Visa type</th>
+                        <th scope="col">Current status</th>
+                        <th scope="col">Done by</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Docs uploaded time</th>
+                    </tr>
+                    </thead>
+            
+                    <tbody>
+            
+                    {% for application in total_visa_applications %}
+                        <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ application.application_id }}</td>
+                        <td>{{ application.name }}</td>
+                        <td>{{ application.visa_country }}</td>
+                        <td>{{ application.type }}</td>
+                        <td>{{ application.status }}</td>
+                        <td>{{ application.upload_by }}</td>
+                        <td>{{ application.upload_branch }}</td>
+                        <td>{{ application.upload_date }}</td>
+                        </tr>
+                    {% endfor %}
+            
+                    </tbody>
+            
+                </table>
+            </div>
+            
+
+        <!-- End Content -->
+    </div>
+</div>
+<!--end page wrapper -->
+        
+{% endblock content %}
+
+
+
+
+

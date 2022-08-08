@@ -1,0 +1,352 @@
+{% extends "dashboard.html" %}
+{% load tailwind_filters %}
+
+{% block title %}Upload Existing Documents{% endblock title %}
+
+{% block content %}
+	<div class="page-wrapper">
+		<div class="page-content">
+			<!-- Start Content -->
+
+                        {% if messages %}
+                        <div class="alert border-0 border-start border-5 border-success alert-dismissible fade show py-2">
+                                {% for message in messages %}
+                                <div class="d-flex align-items-center">
+                                        <div class="font-35 text-success"><i class='bx bxs-check-circle'></i>
+                                        </div>
+                                        <div class="ms-3">
+                                                <h6 class="mb-0 text-success">Success</h6>
+                                                {% if message.tags %}
+                                                <div>{{ message }}</div>
+                                                {% endif %}
+                                        </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                {% endfor %}
+                        </div>
+                        {% endif %}  
+
+
+                        <div class="pricing-table">
+                                <h6 class="mx-3">Visa details of the application   &emsp; &emsp; &emsp; &emsp; Application ID: {{ application.application_id }}  &emsp; &emsp; Applicant name: {{ application.applicant_name }}</h6>
+                                <hr/>
+                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                                    
+                                        <div class="col-xl-5 mx-auto">
+
+                                                {% for visa in prev_visas %}
+                                                <div class="col mb-4">
+                                                        <div class="card mb-5 mb-lg-0">
+                                                        <div class="card-header bg-primary py-3">
+                                                                <h5 class="card-title text-white text-uppercase text-center">Applicant {{ forloop.counter }}</h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                                <ul class="list-group list-group-flush">
+                                                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Name: <span class="fw-bold">{{ visa.name }}</span></li>
+                                                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Phone: {{ visa.phone }}</li>
+                                                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Email: {{ visa.email }}</li>
+                                                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Nationality: {{ visa.nationality }}</li>
+                                                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Relation to applicant: {{ visa.relation_to_applicant }}</li>
+                                                                        <hr>
+                                                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.photo }}" target="_blank">Photo </a></li>
+                                                                        <div class="row">
+                                                                                <div class="col-md-6 list-group-flush">
+                                                                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.passport1 }}" target="_blank">Passport1 </a></li>
+                                                                                </div>
+                                                                                <div class="col-md-6 list-group-flush">
+                                                                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.passport2 }}" target="_blank">Passport2 </a></li>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                                <div class="col-md-6 list-group-flush">
+                                                                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.onward_ticket }}" target="_blank">onward ticket </a></li>
+                                                                                </div>
+                                                                                <div class="col-md-6 list-group-flush">
+                                                                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.return_ticket }}" target="_blank">return ticket </a></li>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                                <div class="col-md-6 list-group-flush">
+                                                                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document1 }}" target="_blank">document1 </a></li>
+                                                                                </div>
+                                                                                <div class="col-md-6 list-group-flush">
+                                                                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document2 }}" target="_blank">document2 </a></li>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                                <div class="col-md-6 list-group-flush">
+                                                                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document3 }}" target="_blank">document3 </a></li>
+                                                                                </div>
+                                                                                <div class="col-md-6 list-group-flush">
+                                                                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document4 }}" target="_blank">document4 </a></li>
+                                                                                </div>
+                                                                        </div>
+                                                                </ul>
+                                                        </div>
+                                                        </div>
+                                                </div>
+                                                {% endfor %}
+                                        
+                                        </div>
+
+                                        <div class="col-xl-7 mx-auto">
+                                                <div class="card border-top border-0 border-4 border-info">
+                                                        <div class="card-body p-5">
+
+                                                                <form class="row g-3" method="POST" enctype="multipart/form-data">
+
+                                                                        {% csrf_token %}
+
+                                                                        <div class="col-md-12">
+                                                                                <label for="name" class="form-label">Name</label>
+                                                                                {{ form.name }}
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                                <label for="phone" class="form-label">Phone</label>
+                                                                                {{ form.phone }}
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                                <label for="email" class="form-label">Email</label>
+                                                                                {{ form.email }}
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                                <label for="gender" class="form-label">Gender</label>
+                                                                                {{ form.gender }}
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                                <label for="nationality" class="form-label">Nationality</label>
+                                                                                {{ form.nationality }}
+                                                                        </div>
+
+                                                                        <div class="col-md-12">
+                                                                                <label for="relation_to_applicant" class="form-label">Relation to applicant</label>
+                                                                                {{ form.relation_to_applicant }}
+                                                                        </div>
+
+                                                                        <div class="col-md-12">
+                                                                                <label for="photo" class="form-label">Photo</label>
+                                                                                {% if prev_visa.photo %}
+                                                                                <a href="{{ prev_visa.photo.url }}">view</a>
+                                                                                {% endif %}
+                                                                                {{ form.photo }}
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                                <label for="passport1" class="form-label">Passport1</label>
+                                                                                {% if prev_visa.passport1 %}
+                                                                                <a href="{{ prev_visa.passport1.url }}">view</a>
+                                                                                {% endif %}
+                                                                                {{ form.passport1 }}
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                                <label for="passport2" class="form-label">Passport2</label>
+                                                                                {% if prev_visa.passport2 %}
+                                                                                <a href="{{ prev_visa.passport2.url }}">view</a>
+                                                                                {% endif %}
+                                                                                {{ form.passport2 }}
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                                <label for="onward_ticket" class="form-label">Onward ticket</label>
+                                                                                {% if prev_visa.onward_ticket %}
+                                                                                <a href="{{ prev_visa.onward_ticket.url }}">view</a>
+                                                                                {% endif %}
+                                                                                {{ form.onward_ticket }}
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                                <label for="return_ticket" class="form-label">Return ticket</label>
+                                                                                {% if prev_visa.return_ticket %}
+                                                                                <a href="{{ prev_visa.return_ticket.url }}">view</a>
+                                                                                {% endif %}
+                                                                                {{ form.return_ticket }}
+                                                                        </div>
+
+                                                                        <div class="col-md-12">
+                                                                                <label for="document1" class="form-label">Document1</label>
+                                                                                {% if prev_visa.document1 %}
+                                                                                <a href="{{ prev_visa.document1.url }}">view</a>
+                                                                                {% endif %}
+                                                                                {{ form.document1 }}
+                                                                        </div>
+
+                                                                        <div class="col-md-12">
+                                                                                <label for="document2" class="form-label">Document2</label>
+                                                                                {% if prev_visa.document2 %}
+                                                                                <a href="{{ prev_visa.document2.url }}">view</a>
+                                                                                {% endif %}
+                                                                                {{ form.document2 }}
+                                                                        </div>
+
+                                                                        <div class="col-md-12">
+                                                                                <label for="document3" class="form-label">Document3</label>
+                                                                                {% if prev_visa.document3 %}
+                                                                                <a href="{{ prev_visa.document3.url }}">view</a>
+                                                                                {% endif %}
+                                                                                {{ form.document3 }}
+                                                                        </div>
+
+                                                                        <div class="col-md-12">
+                                                                                <label for="application_status" class="form-label">Status</label>
+                                                                                {{ form.status }}
+                                                                        </div>
+
+                                                                        <div class="col-md-12 mt-4">
+                                                                                <label for="application_status" class="form-label">Add person</label>
+                                                                                {{ form.add_person }}
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-12">
+                                                                                <button type="submit" class="btn btn-primary px-5">Upload</button>
+                                                                        </div>
+                                                                </form>
+
+                                                        </div>
+                                                </div>
+                                        </div>
+                                    
+                                </div>
+                        </div>
+
+
+
+                        {% comment %} <h6 class="text-center mt-2"> Add person to application of {{ application.applicant_name }}</h6>
+                        <h6 class="text-center mb-3"> Application ID: {{ application.application_id }}</h6>
+                        <div class="row">
+                                <div class="col-xl-7 mx-auto">
+                                        <div class="card border-top border-0 border-4 border-info">
+                                                <div class="card-body p-5">
+
+                                                        <form class="row g-3" method="POST" enctype="multipart/form-data">
+
+                                                                {% csrf_token %}
+
+                                                                <div class="col-md-12">
+                                                                        <label for="name" class="form-label">Name</label>
+                                                                        {{ form.name }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="phone" class="form-label">Phone</label>
+                                                                        {{ form.phone }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="email" class="form-label">Email</label>
+                                                                        {{ form.email }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="gender" class="form-label">Gender</label>
+                                                                        {{ form.gender }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="nationality" class="form-label">Nationality</label>
+                                                                        {{ form.nationality }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="relation_to_applicant" class="form-label">Relation to applicant</label>
+                                                                        {{ form.relation_to_applicant }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="photo" class="form-label">Photo</label>
+                                                                        {% if prev_visa.photo %}
+                                                                        <a href="{{ prev_visa.photo.url }}">view</a>
+                                                                        {% endif %}
+                                                                        {{ form.photo }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="passport1" class="form-label">Passport1</label>
+                                                                        {% if prev_visa.passport1 %}
+                                                                        <a href="{{ prev_visa.passport1.url }}">view</a>
+                                                                        {% endif %}
+                                                                        {{ form.passport1 }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="passport2" class="form-label">Passport2</label>
+                                                                        {% if prev_visa.passport2 %}
+                                                                        <a href="{{ prev_visa.passport2.url }}">view</a>
+                                                                        {% endif %}
+                                                                        {{ form.passport2 }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="onward_ticket" class="form-label">Onward ticket</label>
+                                                                        {% if prev_visa.onward_ticket %}
+                                                                        <a href="{{ prev_visa.onward_ticket.url }}">view</a>
+                                                                        {% endif %}
+                                                                        {{ form.onward_ticket }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="return_ticket" class="form-label">Return ticket</label>
+                                                                        {% if prev_visa.return_ticket %}
+                                                                        <a href="{{ prev_visa.return_ticket.url }}">view</a>
+                                                                        {% endif %}
+                                                                        {{ form.return_ticket }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="document1" class="form-label">Document1</label>
+                                                                        {% if prev_visa.document1 %}
+                                                                        <a href="{{ prev_visa.document1.url }}">view</a>
+                                                                        {% endif %}
+                                                                        {{ form.document1 }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="document2" class="form-label">Document2</label>
+                                                                        {% if prev_visa.document2 %}
+                                                                        <a href="{{ prev_visa.document2.url }}">view</a>
+                                                                        {% endif %}
+                                                                        {{ form.document2 }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="document3" class="form-label">Document3</label>
+                                                                        {% if prev_visa.document3 %}
+                                                                        <a href="{{ prev_visa.document3.url }}">view</a>
+                                                                        {% endif %}
+                                                                        {{ form.document3 }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="application_status" class="form-label">Status</label>
+                                                                        {{ form.status }}
+                                                                </div>
+
+                                                                <div class="col-md-12 mt-4">
+                                                                        <label for="application_status" class="form-label">Add person</label>
+                                                                        {{ form.add_person }}
+                                                                </div>
+
+                                                                
+                                                                
+                                                                <div class="col-12">
+                                                                        <button type="submit" class="btn btn-primary px-5">Upload</button>
+                                                                </div>
+                                                        </form>
+
+                                                </div>
+                                        </div>
+                                </div>
+                        </div> {% endcomment %}
+
+
+			<!-- END CONTENT -->
+		</div>
+	</div>
+	
+	<!--end page wrapper -->
+        
+{% endblock content %}

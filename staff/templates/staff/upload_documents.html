@@ -1,0 +1,142 @@
+{% extends "dashboard.html" %}
+{% load tailwind_filters %}
+
+{% block title %}Upload Documents{% endblock title %}
+
+{% block content %}
+	<div class="page-wrapper">
+		<div class="page-content">
+			<!-- Start Content -->
+
+                        {% if messages %}
+                        <div class="alert border-0 border-start border-5 border-success alert-dismissible fade show py-2">
+                                {% for message in messages %}
+                                <div class="d-flex align-items-center">
+                                        <div class="font-35 text-success"><i class='bx bxs-check-circle'></i>
+                                        </div>
+                                        <div class="ms-3">
+                                                <h6 class="mb-0 text-success">Success</h6>
+                                                {% if message.tags %}
+                                                <div>{{ message }}</div>
+                                                {% endif %}
+                                        </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                {% endfor %}
+                        </div>
+                        {% endif %}   
+
+                        <h6 class="text-center mt-2"> Add person to application of {{ application.applicant_name }}</h6>
+                        <h6 class="text-center mb-3"> Application ID: {{ application.application_id }}</h6>
+                        <div class="row">
+                                <div class="col-xl-7 mx-auto">
+                                        <div class="card border-top border-0 border-4 border-info">
+                                                <div class="card-body p-5">
+
+                                                        <form class="row g-3" method="POST" enctype="multipart/form-data">
+
+                                                                {% csrf_token %}
+
+                                                                <div class="col-md-12">
+                                                                        <label for="name" class="form-label">Name</label>
+                                                                        {{ form.name }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="phone" class="form-label">Phone</label>
+                                                                        {{ form.phone }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="email" class="form-label">Email</label>
+                                                                        {{ form.email }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="gender" class="form-label">Gender</label>
+                                                                        {{ form.gender }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="application_status" class="form-label">Nationality</label>
+                                                                        {{ form.nationality }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="application_status" class="form-label">Relation to applicant</label>
+                                                                        {{ form.relation_to_applicant }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="application_status" class="form-label">Photo</label>
+                                                                        {{ form.photo }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="application_status" class="form-label">Passport1</label>
+                                                                        {{ form.passport1 }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="application_status" class="form-label">Passport2</label>
+                                                                        {{ form.passport2 }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="application_status" class="form-label">Onward ticket</label>
+                                                                        {{ form.onward_ticket }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                        <label for="application_status" class="form-label">Return ticket</label>
+                                                                        {{ form.return_ticket }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="application_status" class="form-label">Document1</label>
+                                                                        {{ form.document1 }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="application_status" class="form-label">Document2</label>
+                                                                        {{ form.document2 }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="application_status" class="form-label">Document3</label>
+                                                                        {{ form.document3 }}
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                        <label for="application_status" class="form-label">Status</label>
+                                                                        {{ form.status }}
+                                                                </div>
+
+                                                                <div class="col-md-12 mt-4">
+                                                                        <label for="application_status" class="form-label">Add person</label>
+                                                                        {{ form.add_person }}
+                                                                </div>
+
+                                                                {% comment %} <div class="col-md-12">
+                                                                        <label for="application_status" class="form-label">Upload visa</label>
+                                                                        {{ form.upload_visa }}
+                                                                </div> {% endcomment %}
+                                                                
+                                                                <div class="col-12">
+                                                                        <button type="submit" class="btn btn-primary px-5">Upload</button>
+                                                                </div>
+                                                        </form>
+
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+
+
+			<!-- END CONTENT -->
+		</div>
+	</div>
+	
+	<!--end page wrapper -->
+        
+{% endblock content %}

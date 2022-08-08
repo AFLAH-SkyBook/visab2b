@@ -1,0 +1,98 @@
+{% extends 'dashboard.html' %}
+{% load tailwind_filters %}
+
+{% block title %}View visa documents{% endblock title %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-content">
+        <!-- Start Content -->
+
+        <div class="pricing-table">
+            <h6 class="mx-3 text-uppercase text-center">View details of the visa</h6>
+            <h6 class="mx-3 text-uppercase text-center">Application ID: {{ visa.application_id }}</h6>
+            <hr>
+            <div class="row justify-content-lg-center">
+                
+                <div class="col-lg-5 mb-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-header bg-primary py-3">
+                            <h5 class="card-title text-white text-uppercase text-center">Visa applicant name: {{ visa.name }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Phone: {{ visa.phone }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Email: {{ visa.email }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Nationality: {{ visa.nationality }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Relation to applicant: {{ visa.relation_to_applicant }}</li>
+                                <hr>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.photo }}" target="_blank">Photo </a></li>
+                                <div class="row">
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.passport1 }}" target="_blank">Passport1 </a></li>
+                                    </div>
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.passport2 }}" target="_blank">Passport2 </a></li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.onward_ticket }}" target="_blank">onward ticket </a></li>
+                                    </div>
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.return_ticket }}" target="_blank">return ticket </a></li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document1 }}" target="_blank">document1 </a></li>
+                                    </div>
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document2 }}" target="_blank">document2 </a></li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document3 }}" target="_blank">document3 </a></li>
+                                    </div>
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document4 }}" target="_blank">document4 </a></li>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            {% comment %} <div class="row justify-content-lg-center">
+                <div class="col-lg-5">
+                    <div class="card border-top border-0 border-4 border-info">
+                        <div class="card-body p-5">
+
+                            <form class="row g-3" method="POST">
+
+                                {% csrf_token %}
+
+                                <div class="col-md-12">
+                                    <label for="application_status" class="form-label">Visa status</label>
+                                    {{ form.status }}
+                                </div>
+                                
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary px-5">Update</button>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+
+        <!-- End Content -->
+    </div>
+</div>
+{% endblock content %}

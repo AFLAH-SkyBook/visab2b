@@ -1,0 +1,89 @@
+{% extends "dashboard.html" %}
+
+{% block title %}Processed visas{% endblock title %}
+
+{% block content %}
+<div class="page-wrapper">
+        <div class="page-content">
+                <!-- Start Content -->
+                
+
+                {% if messages %}
+                <div class="alert border-0 border-start border-5 border-success alert-dismissible fade show py-2">
+                        {% for message in messages %}
+                        <div class="d-flex align-items-center">
+                                <div class="font-35 text-success"><i class='bx bxs-check-circle'></i>
+                                </div>
+                                <div class="ms-3">
+                                        <h6 class="mb-0 text-success">Success</h6>
+                                        {% if message.tags %}
+                                        <div>{{ message }}</div>
+                                        {% endif %}
+                                </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="card radius-10">
+                        <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                        <div>
+                                                <h6 class="mb-0">Rejected visas</h6>
+                                        </div>
+                                        <div class="dropdown ms-auto">
+                                                <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="javascript:;">Action</a>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="javascript:;">Another action</a>
+                                                        </li>
+                                                        <li>
+                                                                <hr class="dropdown-divider">
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                </div>
+                                <div class="table-responsive">
+                                        <table class="table align-middle mb-0">
+                                                <thead class="table-light">
+                                                        <tr>
+                                                        <th>Application ID</th>
+                                                        <th>Visa applicant</th>
+                                                        <th>Visa country</th>
+                                                        <th>Visa type</th>
+                                                        <th>Visa Status</th>
+                                                        <th>Update status</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        {% for application in applications %}
+                                                        <tr class="">
+                                                                <td class="py-3 text-primary fs-5 fw-bold">{{ application.application_id }}</td>
+                                                                <td class="fs-6 fw-bold">{{ application.name }}</td>
+                                                                <td>{{ application.visa_country }}</td>
+                                                                <td>{{ application.type }}</td>
+                                                                <td><span class="badge bg-gradient-quepal text-white shadow-sm w-75 py-2 fs-6">{{ application.status }}</span></td>
+                                                                <td><a href="{% url 'staff:update-visa-status' application.id %}"><button type="button" class="btn btn-info px-3 py-1 radius-10 fs-6">Update</button></a></td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                        
+                                                </tbody>
+                                        </table>
+                                </div>
+                        </div>
+                </div>
+					
+			
+		<!--end page wrapper -->
+
+                <!-- END CONTENT -->
+        </div>
+</div>
+        
+{% endblock content %}
+

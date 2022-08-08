@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Application details{% endblock title %}
+
+{% block content %}
+
+
+<div class="card bg-transparent shadow-none">
+        <div class="card-body text-center">
+                <h5 class="card-title mt-10">Application details</h5>
+                <hr/>
+                <div class="alert border-0 border-start border-5 border-primary fade show text-left lg:mx-80">
+                        <div class="sm:ml-8 ml-2"><h5><br> Application Id: {{ application.application_id }}<br><br>
+                                Name: {{ application.applicant_name }}<br><br>
+                                Phone: {{ application.applicant_phone }}<br><br>
+                                Email: {{ application.applicant_email }}<br><br>
+                                Nationality: {{ application.applicant_nationality }}<br><br>
+                                Visa country: {{ application.visa_country }}<br><br>
+                                Visa type: {{ application.type }}<br><br>
+                                No of persons: {{ application.no_of_persons }}<br><br></h5>
+                        </div>
+                </div>
+                
+                
+        </div>
+</div>
+
+
+{% endblock content %}

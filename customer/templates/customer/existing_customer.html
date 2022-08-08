@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+
+{% block title %}Existing customer{% endblock title %}
+
+{% block content %}
+
+        <div class="container bg-transparent shadow-none text-center">
+                
+                <h3 class="card-title mt-10">Apply for {{visa.country_name}} visa</h3>
+                <hr style="width:75%; margin:10px auto;">
+                
+                <div>Type: {{visa.type}}</div>   
+                
+        </div>
+
+        <form method="post" class="md:w-1/2 md:mx-auto mx-8 mt-4" action="{% url 'customer:apply-success' visa.id %}">
+
+                {% csrf_token %}
+
+                <div class="col-md-12 mb-3">
+                        <label for="applicant_name" class="form-label text-pink-900 fw-bold">Applicant name</label>
+                        {{ form4.applicant_name }}
+                </div>
+
+                <div class="col-md-12 mb-3">
+                        <label for="applicant_phone" class="form-label text-pink-900 fw-bold">Applicant phone</label>
+                        {{ form4.applicant_phone }}
+                </div>
+
+                <div class="col-md-12 mb-3">
+                        <label for="applicant_email" class="form-label text-pink-900 fw-bold">Applicant email</label>
+                        {{ form4.applicant_email }}
+                </div>
+
+                <div class="col-md-12 mb-3">
+                        <label for="applicant_nationality" class="form-label text-pink-900 fw-bold">Nationality</label>
+                        {{ form4.applicant_nationality }}
+                </div>
+
+                <div class="col-md-12 mb-3">
+                        <label for="no_of_persons" class="form-label text-pink-900 fw-bold">No of persons</label>
+                        {{ form4.no_of_persons }}
+                </div>
+
+                <div class="col-md-12">
+                        <div class="row">
+                                <div class="col-md-4">
+                                        <div class="input-group">
+                                                <select id="existing_customer" class="form-control" name="existing_customer" readonly>
+                                                        <option value="ec" selected>PREVIOUS APPLICATION ID</option>
+                                                </select>
+                                        </div>
+                                </div>
+                                <div class="col-md-3">
+                                        {{ form4.prev_id }}
+                                </div>
+                        </div>
+                </div>
+
+                
+
+                <button type="submit" class="flex mx-auto mt-10 text-white bg-blue-500 border-0 py-1 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Apply</button>
+                
+
+        </form>
+        
+{% endblock content %}
+

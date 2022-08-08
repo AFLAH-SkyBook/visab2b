@@ -1,0 +1,150 @@
+{% load static %}
+{% load has_group %}
+<div class="nav-container">
+    <div class="mobile-topbar-header">
+        <div>
+            <img src="{% static 'assets/images/visa-b2b.png' %}" class="logo-icon header-img-mob" alt="logo icon">
+        </div>
+        <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
+        </div>
+    </div>
+    <nav class="topbar-nav">
+        <ul class="metismenu" id="menu">
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='bx bx-category'></i>
+                    </div>
+                    <div class="menu-title">Dashboard</div>
+                </a>
+                <ul>
+                    <li> <a href="{% url 'staff:dashboard-home' %}"><i class="bx bx-right-arrow-alt"></i>Dashboard home</a>
+                    </li>
+                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Link 2</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class="bx bx-paper-plane"></i>
+                    </div>
+                    <div class="menu-title">Applications</div>
+                </a>
+                <ul>
+                    <li> <a href="{% url 'staff:applications' %}"><i class="bx bx-right-arrow-alt"></i>all</a>
+                    </li>
+                    <li> <a href="{% url 'staff:new-applications' %}"><i class="bx bx-right-arrow-alt"></i>new</a>
+                    </li>
+                    <li> <a href="{% url 'staff:contacted-applications' %}"><i class="bx bx-right-arrow-alt"></i>contacted</a>
+                    </li>
+                    <li> <a href="{% url 'staff:docs-uploaded-applications' %}"><i class="bx bx-right-arrow-alt"></i>documents uploaded</a>
+                    </li>
+                    <li> <a href="{% url 'staff:processing-applications' %}"><i class="bx bx-right-arrow-alt"></i>sent for processing</a>
+                    </li>
+                    <li> <a href="{% url 'staff:approved-applications' %}"><i class="bx bx-right-arrow-alt"></i>approved </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bx bx-user"></i>
+                    </div>
+                    <div class="menu-title">Existing customers</div>
+                </a>
+                <ul>
+                    <li> <a href="{% url 'staff:existing-customers-applications' %}"><i class="bx bx-right-arrow-alt"></i>new applications</a>
+                    </li>
+                    <li> <a href="{% url 'staff:existing-customers-contacted' %}"><i class="bx bx-right-arrow-alt"></i>contacted applications</a>
+                    </li>
+                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>3</a>
+                    </li>
+                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>4</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bx bxs-plane-alt"></i>
+                    </div>
+                    <div class="menu-title">Visa</div>
+                </a>
+                <ul>
+                    <li> <a href="{% url 'staff:all-visa-applications' %}"><i class="bx bx-right-arrow-alt"></i>all</a>
+                    </li>
+                    <li> <a href="{% url 'staff:new-visa-applications' %}"><i class="bx bx-right-arrow-alt"></i>new</a>
+                    </li>
+                    {% if request.user|has_group:"supervisor" %}
+                    <li> <a href="{% url 'staff:processed-visas' %}"><i class="bx bx-right-arrow-alt"></i>processed visas</a>
+                    </li>
+                    <li> <a href="{% url 'staff:approved-visas' %}"><i class="bx bx-right-arrow-alt"></i>approved visas</a>
+                    </li>
+                    <li> <a href="{% url 'staff:rejected-visas' %}"><i class="bx bx-right-arrow-alt"></i>rejected visas</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% if request.user|has_group:"supervisor" %}
+            <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class='bx bx-line-chart'></i>
+                    </div>
+                    <div class="menu-title">Reports</div>
+                </a>
+                <ul>
+                    <li> <a href="{% url 'report:staff-report' %}"><i class="bx bx-right-arrow-alt"></i>Staff</a>
+                    </li>
+                    <li> <a href="{% url 'report:customer-report' %}"><i class="bx bx-right-arrow-alt"></i>Customer</a>
+                    </li>
+                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Report 3</a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+            <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon icon-color-6"> <i class="bx bx-donate-blood"></i>
+                    </div>
+                    <div class="menu-title">dropdown 2</div>
+                </a>
+                <ul>
+                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>1</a>
+                    </li>
+                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>2</a>
+                    </li>
+                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>3</a>
+                    </li>
+                    <li> <a class="has-arrow" href="#"><i class="bx bx-right-arrow-alt"></i>4</a>
+                        <ul>
+                            <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>1</a>
+                            </li>
+                            <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>2</a>
+                            </li>
+                            <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>3</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            {% if request.user|has_group:"manager" %}
+            <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class='bx bx-message-square-edit'></i>
+                    </div>
+                    <div class="menu-title">Add data</div>
+                </a>
+                <ul>
+                    <li> <a href="{% url 'manager:add-nation' %}"><i class="bx bx-right-arrow-alt"></i>Applicant nation</a>
+                    </li>
+                    <li> <a href="{% url 'manager:add-country' %}"><i class="bx bx-right-arrow-alt"></i>Visa Country</a>
+                    </li>
+                    <li> <a href="{% url 'manager:add-visa' %}"><i class="bx bx-right-arrow-alt"></i>Add visa</a>
+                    </li>
+                    <li> <a href="{% url 'manager:select-country' %}"><i class="bx bx-right-arrow-alt"></i>Needed documents</a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+</div>

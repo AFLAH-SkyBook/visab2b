@@ -1,0 +1,62 @@
+{% extends 'dashboard.html' %}
+{% load tailwind_filters %}
+
+{% block title %}View visa {% endblock title %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-content">
+        <!-- Start Content -->
+
+        <div class="pricing-table">
+            <h6 class="mx-3 text-uppercase text-center">View visa<br><br>Application ID: {{ visa.application_id }}</h6>
+            <hr/>
+            <div class="row justify-content-lg-center">
+                
+                <div class="col-lg-5 mb-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-header bg-primary py-3">
+                            <h5 class="card-title text-white text-uppercase text-center">Name: {{ visa.name }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Phone: {{ visa.phone }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Email: {{ visa.email }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Nationality: {{ visa.nationality }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Relation to applicant: {{ visa.relation_to_applicant }}</li>
+                                <hr>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Visa country: {{ visa.visa_country }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Visa type: {{ visa.type }}</li>
+
+                            </ul>
+                            <div class="d-grid mt-4 mx-4"> <a target="_blank" href="../../../media/{{ visa.upload_visa }}" class="btn btn-outline-danger px-5 radius-30">View visa</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- End Content -->
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
+{% comment %} {% extends 'base.html' %}
+
+{% block title %}View Visa{% endblock title %}
+
+{% block content %}
+
+    <p class="text-lg text-center font-medium mt-4">View visa here.</p> <br>
+    <p class="text-lg text-center">Name: {{ visa.name }}</p> <br>
+    <p class="text-lg text-center">App ID: {{ visa.application_id }}</p> <br>
+    <p class="text-lg text-center font-bold"><a href="../../../media/{{ visa.upload_visa }}">View </a></p> <br>
+
+{% endblock content %} {% endcomment %}
+
+

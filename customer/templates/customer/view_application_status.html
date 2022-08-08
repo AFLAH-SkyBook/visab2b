@@ -1,0 +1,78 @@
+{% extends "dashboard.html" %}
+{% load is_approved %}
+
+{% block title %}Application status{% endblock title %}
+
+{% block content %}
+<div class="page-wrapper">
+        <div class="page-content">
+                <!-- Start Content -->
+
+                <div class="row">
+                        <div class="col col-lg-7 mx-auto">
+                                <div class="card">
+                                        <div class="card-body">
+                                                <div class="card-title">
+                                                        <h3 class="mb-2 text-center">APPLICATION STATUS</h3><h5 class="mb-0 text-center">Application Id: {{ application.application_id }} &emsp; Name: {{ application.applicant_name }}</h5>
+                                                </div>
+                                                <hr/>
+                                                <div class="row justify-content-lg-center">
+                                                        <div class="col-lg-8">
+                                                                        <div class="card-body">
+                                                                                {% if user.is_authenticated %}
+                                                                                <div class="">
+                                                                                        <h5 class="card-title text-center text-danger mx-lg-5">Status: {{ application.application_status }}</h5>
+                                                                                </div>
+                                                                                {% endif %}
+                                                                                <div class="text-center mt-3">
+                                                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleScrollableModal">view visa status</button>
+                                                                                </div>
+                                                                        </div>
+                                                                
+                                                        </div>
+                                                                
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="exampleScrollableModal" tabindex="-1" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-dialog-scrollable">
+                                                                                <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                                <h5 class="modal-title">Visa Status</h5>
+                                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+
+                                                                                                {% if visas %}
+
+                                                                                                        {% for visa in visas %}
+                                                                                                        <p>Visa applicant: {{ visa.name }}</p>
+                                                                                                        <p>Status: {{ visa.status }}</p>
+
+                                                                                                        {% if visa.id|is_approved %}
+                                                                                                        <p><a href="../media/{{ visa.upload_visa }}" target="_blank">Download visa</a></p>
+                                                                                                        {% endif %}
+
+                                                                                                        <hr width="80%">
+                                                                                                        {% endfor %}
+
+                                                                                                {% else %}
+
+                                                                                                <p>Your primary application is received, we'll contact you soon for confirmation and documents to apply for visa.</p>
+                                                                                                
+                                                                                                {% endif %}
+                                                                                                
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                </div>
+                                                <!--end row-->
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+                <!-- End Content -->
+        </div>
+</div>
+{% endblock content %}
+

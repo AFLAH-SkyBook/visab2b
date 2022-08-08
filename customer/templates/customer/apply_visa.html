@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+
+{% block title %}Visa Application{% endblock title %}
+
+{% block content %}
+
+        <div class="container bg-transparent shadow-none text-center">
+                
+                <h3 class="card-title mt-10">Apply for {{visa.country_name}} visa</h3>
+                <hr style="width:75%; margin:10px auto;">
+                
+                <div>Type: {{visa.type}}</div>   
+                
+        </div>
+
+        {% if form1 %}
+        <form class="md:w-1/2 md:mx-auto mx-8 mt-4" method="POST">
+
+                {% csrf_token %}
+                <label for="inlineRadioOptions" class="form-label text-pink-900 fw-bold">Are you an existing customer?</label>
+                <div class="col-md-12 mb-3">
+                        
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="yes">
+                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="no">
+                                <label class="form-check-label" for="inlineRadio2">No</label>
+                        </div>
+                </div>
+
+                <button type="submit" class="flex mx-auto mt-10 text-white bg-blue-500 border-0 py-1 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Submit</button>
+
+        </form>
+        {% endif %}
+
+        {% if form2 %}
+        <form method="post" class="md:w-1/2 md:mx-auto mx-8 mt-4" action="{% url 'customer:apply-success' visa.id %}">
+
+                {% csrf_token %}
+
+                <div class="col-md-12 mb-3">
+                        <label for="applicant_name" class="form-label text-pink-900 fw-bold">Applicant name</label>
+                        {{ form2.applicant_name }}
+                </div>
+
+                <div class="col-md-12 mb-3">
+                        <label for="applicant_phone" class="form-label text-pink-900 fw-bold">Applicant phone</label>
+                        {{ form2.applicant_phone }}
+                </div>
+
+                <div class="col-md-12 mb-3">
+                        <label for="applicant_email" class="form-label text-pink-900 fw-bold">Applicant email</label>
+                        {{ form2.applicant_email }}
+                </div>
+
+                <div class="col-md-12 mb-3">
+                        <label for="applicant_nationality" class="form-label text-pink-900 fw-bold">Nationality</label>
+                        {{ form2.applicant_nationality }}
+                </div>
+
+                <div class="col-md-12 mb-3">
+                        <label for="no_of_persons" class="form-label text-pink-900 fw-bold">No of visa needed persons</label>
+                        {{ form2.no_of_persons }}
+                </div>
+                
+
+                <button type="submit" class="flex mx-auto mt-10 text-white bg-blue-500 border-0 py-1 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Apply</button>
+
+        </form>
+        {% endif %}
+
+        {% if form3 %}
+        <form class="md:w-1/2 md:mx-auto mx-8 mt-4" method="POST">
+
+                {% csrf_token %}
+                
+                <div class="col-md-6 mx-auto mb-3">
+                        <label for="customer_id" class="form-label text-pink-900 fw-bold">Enter customer id</label>
+                        <input class="form-control mb-3" type="text" name="customer_id">
+                </div>
+
+                <button type="submit" class="flex mx-auto mt-10 text-white bg-blue-500 border-0 py-1 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Submit</button>
+                <button type="button" class="flex mx-auto mt-10 text-white bg-blue-500 border-0 py-1 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg" data-bs-toggle="modal" data-bs-target="#exampleScrollableModal1">search customer id</button>
+
+        </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleScrollableModal1" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title">Search customer id</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                        <form method="GET">
+
+                                                <div class="row mx-auto">
+                                                        <div class="col-md-12">
+                                                                <label for="email" class="form-label">Email</label>
+                                                                <input type="email" name="email" class="form-control" maxlength="254" required="" id="id_email">
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                                <label for="phone" class="form-label">Phone</label>
+                                                                <input type="number" name="phone" class="form-control" maxlength="12" required="" id="id_phone">
+                                                        </div>
+                                                </div>
+                                                
+                                                <button type="submit" class="flex mx-auto mt-10 text-white bg-blue-500 border-0 py-1 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Search</button>
+                                                
+                                        </form>
+                                        
+                                </div>
+                        </div>
+                </div>
+        </div>
+        {% endif %}
+        
+        
+{% endblock content %}
+

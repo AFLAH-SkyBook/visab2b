@@ -1,0 +1,83 @@
+{% extends 'dashboard.html' %}
+{% load tailwind_filters %}
+
+{% block title %}Add visa{% endblock title %}
+
+{% block content %}
+	<div class="page-wrapper">
+		<div class="page-content">
+			<!-- Start Content -->
+
+
+            <h4 class="text-center my-4"> Add a VISA </h4>
+			<div class="row">
+				<div class="col-xl-7 mx-auto">
+					<div class="card border-top border-0 border-4 border-info">
+						<div class="card-body p-5">
+
+							<form class="row g-3" method="POST" enctype="multipart/form-data">
+
+								{% csrf_token %}
+
+								<div class="col-md-6">
+									<label for="name" class="form-label">Country</label>
+									{{ form.country_name }}
+								</div>
+
+								<div class="col-md-6">
+									<label for="name" class="form-label">Visa type</label>
+									{{ form.type }}
+								</div>
+
+								<div class="col-md-6">
+									<label for="name" class="form-label">Stay period (in days)</label>
+									{{ form.stay_period }}
+								</div>
+
+								<div class="col-md-6">
+									<label for="name" class="form-label">Validity (in days)</label>
+									{{ form.validity }}
+								</div>
+
+								<div class="col-md-6">
+									<label for="name" class="form-label">Entry</label>
+									{{ form.entry }}
+								</div>
+
+								<div class="col-md-6">
+									<label for="name" class="form-label">Fees (in $)</label>
+									{{ form.fees }}
+								</div>
+
+								<div class="col-md-6">
+									<label for="name" class="form-label">Photo</label>
+									{{ form.photo }}
+								</div>
+
+								<div class="col-md-6">
+									<label for="name" class="form-label">Processing time (in hours)</label>
+									{{ form.processing_time }}
+								</div>
+
+								<div class="col-md-12">
+									<label for="application_status" class="form-label">show on home </label>
+									{{ form.show_on_home }}
+								</div>
+								
+								<div class="col-12">
+									<button type="submit" class="btn btn-primary px-5">Add</button>
+								</div>
+							</form>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- END CONTENT -->
+		</div>
+	</div>
+	<!--end page wrapper -->
+{% endblock content %}

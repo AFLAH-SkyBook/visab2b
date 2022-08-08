@@ -1,0 +1,73 @@
+{% extends "dashboard.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-content">
+            <!-- Start Content -->
+                
+        
+            <div class="section-authentication-signin align-items-center justify-content-center">
+                <div class="container-fluid">
+                    <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+                        <div class="col mx-auto">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="border p-4 rounded">
+                                        <div class="text-center">
+                                            <h4 class="">VisaB2b Dashboard</h4>
+                                        </div>
+                                        
+                                        <div class="form-body py-3">
+                                            <form class="row g-3" method="POST">
+                                                {% csrf_token %}
+                                                <div class="col-12">
+                                                    <label for="id_username" class="form-label">Username</label>
+                                                    {{ form.username }}
+                                                    {% comment %} <input type="email" class="form-control" id="inputEmailAddress" placeholder="Email Address"> {% endcomment %}
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="id_password" class="form-label">Password</label>
+                                                        {{ form.password }}
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="d-grid">
+                                                        <button type="submit" class="btn btn-primary">Log in</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end row-->
+                </div>
+            </div>
+
+
+            <!-- End Content -->
+    </div>
+</div>      
+{% endblock content %}
+
+
+
+{% comment %} {% extends 'base.html' %}
+{% load tailwind_filters %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+
+        <form method="POST" class="w-1/3 my-5 mx-auto">
+            
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-success" type="submit" value="Login"><br><br>
+            
+        </form>
+
+{% endblock content %} {% endcomment %}
