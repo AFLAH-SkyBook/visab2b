@@ -99,6 +99,7 @@ class   Document(models.Model):
     document2 = models.FileField(upload_to='files', blank=True, null=True)
     document3 = models.FileField(upload_to='files', blank=True, null=True)
     document3 = models.FileField(upload_to='files', blank=True, null=True)
+    document4 = models.FileField(upload_to='files', blank=True, null=True)
 
     application_id = models.IntegerField(default=20220000)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="Applied")

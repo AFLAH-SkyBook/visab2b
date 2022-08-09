@@ -5,7 +5,7 @@ from customer.models import Application, Document
 class UploadDocumentsForm(forms.ModelForm):
     class Meta:
         model = Document
-        fields = ['name','phone','email','gender','nationality', 'relation_to_applicant', 'passport1','passport2','photo','onward_ticket','return_ticket','document1','document2','document3','status','add_person','upload_visa']
+        fields = ['name','phone','email','gender','nationality', 'relation_to_applicant', 'passport1','passport2','photo','onward_ticket','return_ticket','document1','document2','document3','document4','status','add_person','upload_visa']
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control'}),
             'phone': forms.NumberInput(attrs={'class':'form-control'}),
@@ -21,6 +21,7 @@ class UploadDocumentsForm(forms.ModelForm):
             'document1': forms.FileInput(attrs={'class':'form-control'}),
             'document2': forms.FileInput(attrs={'class':'form-control'}),
             'document3': forms.FileInput(attrs={'class':'form-control'}),
+            'document4': forms.FileInput(attrs={'class':'form-control'}),
             'status': forms.Select(attrs={'class':'form-control form-select'}),
             'add_person': forms.CheckboxInput(attrs={'class':'form-check-input'}),
             'upload_visa': forms.FileInput(attrs={'class':'form-control'}),

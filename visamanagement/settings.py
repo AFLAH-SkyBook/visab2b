@@ -5,7 +5,7 @@ import environ
 # Initialise environment variables
 env = environ.Env()
 
-READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
+READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=True)
 if READ_DOT_ENV_FILE:
     environ.Env.read_env()
 
@@ -22,7 +22,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['shark-app-gbyjk.ondigitalocean.app']
+ALLOWED_HOSTS = ['shark-app-gbyjk.ondigitalocean.app','127.0.0.1']
 
 
 # Application definition

@@ -24,12 +24,11 @@
                                                 {% csrf_token %}
                                                 <div class="col-12">
                                                     <label for="id_username" class="form-label">Username</label>
-                                                    {{ form.username }}
-                                                    {% comment %} <input type="email" class="form-control" id="inputEmailAddress" placeholder="Email Address"> {% endcomment %}
+                                                    <input type="text" name="username" class="form-control" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="id_password" class="form-label">Password</label>
-                                                        {{ form.password }}
+                                                    <input type="password" name="password" class="form-control" autocomplete="current-password" required="" id="id_password">
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="d-grid">
