@@ -31,7 +31,6 @@ class Visa(models.Model):
     validity = models.IntegerField(default=0)
     entry = models.CharField(max_length=20, choices=ENTRY_CHOICES)
     fees = models.IntegerField(default=0)
-    photo = models.ImageField(upload_to='photos', default='photos/default.jpg')
     show_on_home = models.BooleanField(default=False)
 
     def __str__(self):

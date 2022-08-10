@@ -27,7 +27,7 @@ class AddCountryForm(forms.ModelForm):
 class AddVisaForm(forms.ModelForm):
     class Meta:
         model = Visa
-        fields = ['country_name','type','processing_time','stay_period','validity','entry','fees','photo','show_on_home']
+        fields = ['country_name','type','processing_time','stay_period','validity','entry','fees','show_on_home']
         widgets = {
             'country_name': forms.Select(attrs={'class':'form-control form-select'}),
             'type': forms.TextInput(attrs={'class':'form-control'}),
@@ -36,7 +36,6 @@ class AddVisaForm(forms.ModelForm):
             'validity': forms.NumberInput(attrs={'class':'form-control'}),
             'entry': forms.Select(attrs={'class':'form-control form-select'}),
             'fees': forms.NumberInput(attrs={'class':'form-control'}),
-            'photo': forms.FileInput(attrs={'class':'form-control'}),
             'show_on_home': forms.CheckboxInput(attrs={'class':'form-check-input'}),
         }
 
