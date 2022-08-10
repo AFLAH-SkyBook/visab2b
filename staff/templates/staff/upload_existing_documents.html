@@ -192,8 +192,11 @@
                                                                         </div>
 
                                                                         <div class="col-md-12">
-                                                                                <label for="application_status" class="form-label">Document3</label>
-                                                                                {{ form.document4 }}
+                                                                                <label for="document3" class="form-label">Document4</label>
+                                                                                {% if prev_visa.document3 %}
+                                                                                <a href="{{ prev_visa.document3.url }}">view</a>
+                                                                                {% endif %}
+                                                                                {{ form.document3 }}
                                                                         </div>
 
                                                                         <div class="col-md-12">
