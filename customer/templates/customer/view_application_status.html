@@ -48,7 +48,7 @@
                                                                                                         <p>Status: {{ visa.status }}</p>
 
                                                                                                         {% if visa.id|is_approved %}
-                                                                                                        <p><a href="../media/{{ visa.upload_visa }}" target="_blank">Download visa</a></p>
+                                                                                                        <p>{% if visa.upload_visa %}<a href="{{ visa.upload_visa.url }}" target="_blank">Download visa</a>{% endif %}</p>
                                                                                                         {% endif %}
 
                                                                                                         <hr width="80%">

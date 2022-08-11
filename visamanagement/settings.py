@@ -12,6 +12,7 @@ if READ_DOT_ENV_FILE:
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+FILES_DIR = os.path.abspath(os.path.join(BASE_DIR, '../'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -148,7 +149,7 @@ CRISPY_TEMPLATE_PACK = 'tailwind'
 MEDIA_URL = '/media/'  
   
 # Path where media is stored  
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(FILES_DIR, 'media')
 
 
 if not DEBUG:

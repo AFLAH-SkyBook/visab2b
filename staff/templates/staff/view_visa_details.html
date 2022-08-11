@@ -27,37 +27,37 @@
                                 <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Nationality: {{ visa.nationality }}</li>
                                 <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Relation to applicant: {{ visa.relation_to_applicant }}</li>
                                 <hr>
-                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.photo }}" target="_blank">Photo </a></li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.photo %}<a href="{{ visa.photo.url }}" target="_blank">Photo </a>{% endif %}</li>
                                 <div class="row">
                                     <div class="col-md-6 list-group-flush">
-                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.passport1 }}" target="_blank">Passport1 </a></li>
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.passport1 %}<a href="{{ visa.passport1.url }}" target="_blank">Passport1 </a>{% endif %}</li>
                                     </div>
                                     <div class="col-md-6 list-group-flush">
-                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.passport2 }}" target="_blank">Passport2 </a></li>
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.passport2 %}<a href="{{ visa.passport2.url }}" target="_blank">Passport2 </a>{% endif %}</li>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 list-group-flush">
-                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.onward_ticket }}" target="_blank">onward ticket </a></li>
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.onward_ticket %}<a href="{{ visa.onward_ticket.url }}" target="_blank">onward ticket </a>{% endif %}</li>
                                     </div>
                                     <div class="col-md-6 list-group-flush">
-                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.return_ticket }}" target="_blank">return ticket </a></li>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 list-group-flush">
-                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document1 }}" target="_blank">document1 </a></li>
-                                    </div>
-                                    <div class="col-md-6 list-group-flush">
-                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document2 }}" target="_blank">document2 </a></li>
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.return_ticket %}<a href="{{ visa.return_ticket.url }}" target="_blank">return ticket </a>{% endif %}</li>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 list-group-flush">
-                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document3 }}" target="_blank">document3 </a></li>
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.document1 %}<a href="{{ visa.document1.url }}" target="_blank">document1 </a>{% endif %}</li>
                                     </div>
                                     <div class="col-md-6 list-group-flush">
-                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.document4 }}" target="_blank">document4 </a></li>
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.document2 %}<a href="{{ visa.document2.url }}" target="_blank">document2 </a>{% endif %}</li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.document3 %}<a href="{{ visa.document3.url }}" target="_blank">document3 </a>{% endif %}</li>
+                                    </div>
+                                    <div class="col-md-6 list-group-flush">
+                                        <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.document4 %}<a href="{{ visa.document4.url }}" target="_blank">document4 </a>{% endif %}</li>
                                     </div>
                                 </div>
                             </ul>

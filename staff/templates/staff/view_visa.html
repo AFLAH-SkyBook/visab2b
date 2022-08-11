@@ -29,7 +29,7 @@
                                 <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Visa type: {{ visa.type }}</li>
 
                             </ul>
-                            <div class="d-grid mt-4 mx-4"> <a target="_blank" href="../../../media/{{ visa.upload_visa }}" class="btn btn-outline-danger px-5 radius-30">View visa</a>
+                            <div class="d-grid mt-4 mx-4"> {% if visa.upload_visa %} <a target="_blank" href="{{ visa.upload_visa.url }}" class="btn btn-outline-danger px-5 radius-30">View visa</a>{% endif %}
                             </div>
                         </div>
                     </div>
