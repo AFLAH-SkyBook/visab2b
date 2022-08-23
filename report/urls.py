@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 
-from report.views import customer_report, date_filter, date_filter_30days, date_filter_7days, date_filter_90days, date_filter_lastMonth, date_filter_lastYear, date_filter_thisMonth, date_filter_thisYear, date_filter_today, date_filter_yesterday, staff_report
+from report.views import customer_report, date_filter, date_filter_30days, date_filter_7days, date_filter_90days, date_filter_lastMonth, date_filter_lastYear, date_filter_thisMonth, date_filter_thisYear, date_filter_today, date_filter_yesterday, staff_history, staff_report
 
 urlpatterns = [
     path('staff/', staff_report, name='staff-report'),
@@ -30,6 +30,7 @@ urlpatterns = [
     path('date_filter/90days/', date_filter_90days, name='date-filter-90days'),
     path('date_filter/thisYear/', date_filter_thisYear, name='date-filter-thisYear'),
     path('date_filter/lastYear/', date_filter_lastYear, name='date-filter-lastYear'),
+    path('staff_history/', staff_history, name='staff-history'),
 ]
 
 

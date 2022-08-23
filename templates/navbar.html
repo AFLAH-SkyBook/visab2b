@@ -98,15 +98,15 @@
                     </li>
                 </ul>
             </li>
-            {% endif %}
+            
             <li>
                 <a class="has-arrow" href="javascript:;">
-                    <div class="parent-icon icon-color-6"> <i class="bx bx-donate-blood"></i>
+                    <div class="parent-icon icon-color-6"> <i class="bx bx-spreadsheet"></i>
                     </div>
-                    <div class="menu-title">dropdown 2</div>
+                    <div class="menu-title">History</div>
                 </a>
                 <ul>
-                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>1</a>
+                    <li> <a href="{% url 'report:staff-history' %}"><i class="bx bx-right-arrow-alt"></i>Staff history</a>
                     </li>
                     <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>2</a>
                     </li>
@@ -124,6 +124,7 @@
                     </li>
                 </ul>
             </li>
+            {% endif %}
 
             {% if request.user|has_group:"manager" %}
             <li>

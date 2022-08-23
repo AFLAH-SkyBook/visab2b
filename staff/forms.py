@@ -55,3 +55,20 @@ class UploadVisaForm(forms.ModelForm):
             'type': forms.TextInput(attrs={'class':'form-control'}),
             'upload_visa': forms.FileInput(attrs={'class':'form-control'}),
         }
+
+
+class DocumentUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ['name','photo','phone','email','gender','nationality','relation_to_applicant', 'passport1','passport2','photo','onward_ticket','return_ticket','document1','document2','document3','document4','status','add_person']
+        widgets = {
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'phone': forms.NumberInput(attrs={'class':'form-control'}),
+            'email': forms.EmailInput(attrs={'class':'form-control'}),
+            'gender': forms.Select(attrs={'class':'form-control form-select'}),
+            'nationality': forms.Select(attrs={'class':'form-control form-select'}),
+            'relation_to_applicant': forms.TextInput(attrs={'class':'form-control'}),
+            'status': forms.Select(attrs={'class':'form-control form-select'}),
+            'add_person': forms.CheckboxInput(attrs={'class':'form-check-input'}),
+
+        }

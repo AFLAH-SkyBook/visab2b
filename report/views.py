@@ -7,7 +7,7 @@ import datetime
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.decorators import login_required
 from customer.models import Application, Country, Document, SavedCustomer
-from staff.models import Branch
+from staff.models import Branch, History
 from visamanagement.decorators import allowed_users
 
 
@@ -1109,6 +1109,43 @@ def date_filter_lastYear(request):
     }
     return render(request,"staff/dashboard_home.html", context)
 
+
+@login_required(login_url='user-login')
+@allowed_users(allowed_roles=['manager','supervisor'])
+def staff_history(request):
+    staff_history = History.objects.all()
+    staff = request.GET.get('staff')
+    branch = request.GET.get('branch')
+    app_id = request.GET.get('app_id')
+    activity = request.GET.get('activity')
+    fromDate = request.GET.get('date_from')
+    toDate = request.GET.get('date_to')
+
+    if staff != '' and staff is not None:
+        staff_history = staff_history.filter(user__icontains=staff)
+
+    if branch != '' and branch is not None:
+        staff_history = staff_history.filter(branch=branch)
+
+    if app_id != '' and app_id is not None:
+        staff_history = staff_history.filter(visa_app_id__icontains=app_id)
+
+    if activity != '' and activity is not None:
+        staff_history = staff_history.filter(activity=activity)
+
+    if fromDate != '' and fromDate is not None:
+        staff_history = staff_history.filter(time__gte=fromDate)
+
+    if toDate != '' and toDate is not None:
+        toDate = datetime.datetime.strptime(toDate, '%Y-%m-%d')
+        toDate += datetime.timedelta(days=1)
+        staff_history = staff_history.filter(time__lt=toDate)
+
+    context = {
+        "staff_history": staff_history,
+        "branches": Branch.objects.all(),
+    }
+    return render(request, 'report/staff_history.html',context)
 
 
 

@@ -1,0 +1,124 @@
+{% extends "dashboard.html" %}
+{% load tailwind_filters %}
+
+{% block title %}History{% endblock title %}
+
+{% block content %}
+	<div class="page-wrapper">
+		<div class="page-content">
+				<!-- Start Content -->
+				
+				<div class="row">
+					<div class="col-lg-7 mx-auto">
+						<div class="card border-top border-0 border-4 border-info">
+							<div class="card-body p-4 p-lg-5">
+								<form class="row g-3" method="GET" action=".">
+									<div class="col-md-6">
+										<div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-user' ></i></span>
+											<input type="search" class="form-control" name="staff" placeholder="Enter Staff name..." />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="input-group">
+											<span class="input-group-text bg-transparent"><i class='bx bxs-buildings' ></i></span>
+											<select id="branch" class="form-control" name="branch">
+												<option value="" selected>Select branch</option>
+												{% for branch in branches %}
+												<option value="{{ branch.name }}">{{ branch.name }}</option>
+												{% endfor %}
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bx-paper-plane' ></i></span>
+											<input type="search" class="form-control" name="app_id" placeholder="Enter visa application ID" />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bx-calendar-exclamation' ></i></span>
+											<select id="country" class="form-control" name="activity">
+												<option value="" selected>Select Activity</option>
+												<option value="Documents added">Documents added</option>
+												<option value="Visa approved">Visa approved</option>
+												<option value="Sent for visa processing">Sent for visa processing</option>
+											</select>
+										</div>
+									</div>
+									
+									<div class="col-md-6">
+										<label for="inputLastName1" class="form-label">From</label>
+										<div class="input-group">
+											<input type="date" class="form-control" name="date_from" placeholder="First Name" />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<label for="inputLastName2" class="form-label">To</label>
+										<div class="input-group">
+											<input type="date" class="form-control" name="date_to" placeholder="Last Name" />
+										</div>
+									</div>
+									{% comment %} <div class="col-12">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="csv_export" name="export" value="csv">
+											<label class="form-check-label" for="csv_export">Export to CSV</label>
+										</div>
+									</div> {% endcomment %}
+									<div class="col-12">
+										<button type="submit" class="btn btn-primary px-5">Filter</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<br>
+				<hr>
+
+				<div class="table-responsive">
+					<table class="table table-striped align-middle">
+
+						<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Staff name</th>
+							<th scope="col">Branch</th>
+							<th scope="col">Activity</th>
+							<th scope="col">Visa application ID</th>
+							<th scope="col">Visa applicant name</th>
+							<th scope="col">Time</th>
+							<th scope="col">Description</th>
+						</tr>
+						</thead>
+				
+						<tbody>
+				
+						{% for staff_history in staff_history %}
+							<tr>
+							<th scope="row">{{ forloop.counter }}</th>
+							<td>{{ staff_history.user }}</td>
+							<td>{{ staff_history.branch }}</td>
+							<td>{{ staff_history.activity }}</td>
+							<td>{{ staff_history.visa_app_id }}</td>
+							<td>{{ staff_history.visa_applicant }}</td>
+							<td>{{ staff_history.time }}</td>
+							<td>{{ staff_history.description }}</td>
+							</tr>
+						{% endfor %}
+				
+						</tbody>
+				
+					</table>
+				</div>
+
+
+			<!-- END CONTENT -->
+		</div>
+	</div>
+	
+	<!--end page wrapper -->
+        
+{% endblock content %}
+
+

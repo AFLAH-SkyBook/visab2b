@@ -8,8 +8,8 @@ import datetime
 from customer.forms import ApplicationForm
 
 from customer.models import Application, Country, Document, Visa
-from staff.forms import UpdateApplicationStatusForm, UpdateVisaStatusForm, UploadDocumentsForm, UploadVisaForm
-from staff.models import Branch, Staff
+from staff.forms import DocumentUpdateForm, UpdateApplicationStatusForm, UpdateVisaStatusForm, UploadDocumentsForm, UploadVisaForm
+from staff.models import Branch, History, Staff
 from visamanagement.decorators import allowed_users
 from visamanagement.forms import CountrySelectForm
 
@@ -299,6 +299,13 @@ def upload_documents(request, pk):
             document.upload_by = staff
             document.upload_date = timezone.now()
             document.save()
+            history = History.objects.create(
+                user = staff,
+                branch = branch,
+                activity = 'Documents added',
+                visa_app_id = application.application_id,
+                visa_applicant = document.name,
+            )
             if form.cleaned_data['add_person']==True:
                 messages.success(request, 'Successfully Saved')
                 return redirect('staff:upload-documents',pk=application.id)
@@ -336,6 +343,13 @@ def upload_existing_documents(request, pk):
             document.upload_by = staff
             document.upload_date = timezone.now()
             document.save()
+            history = History.objects.create(
+                user = staff,
+                branch = branch,
+                activity = 'Documents added',
+                visa_app_id = application.application_id,
+                visa_applicant = document.name,
+            )
             if form.cleaned_data['add_person']==True:
                 messages.success(request, 'Successfully Saved')
                 return redirect('staff:upload-existing-documents',pk=application.id)
@@ -358,8 +372,22 @@ def upload_existing_documents(request, pk):
 @allowed_users(allowed_roles=['manager','supervisor','staff'])
 def view_docs(request, pk):
     visa = Document.objects.get(id=pk)
+    edit_form = DocumentUpdateForm(instance=visa)
+    if request.method == 'POST':
+        form = DocumentUpdateForm(request.POST, request.FILES, instance=visa)
+        if form.is_valid():
+            form.save()
+            return redirect('staff:all-visa-applications')
+            # if form.cleaned_data['add_person']==True:
+            #     messages.success(request, 'Successfully Saved')
+            #     return redirect('staff:upload-documents',pk=application.id)
+            # messages.success(request, 'Successfully added visa applicant(s)')
+            # if form.cleaned_data['add_person']==False:
+            #     messages.success(request, 'Visa status updated')
+            #     return redirect('staff:applications')
     context = {
         "visa": visa,
+        "edit_form": edit_form,
     }
     return render(request,"staff/view_docs.html", context)
 
@@ -376,6 +404,15 @@ def download_docs(request, pk):
             visa = form.save(commit=False)
             visa.process_date = timezone.now()
             visa.save()
+            staff = request.user
+            branch = Staff.objects.get(user=staff).branch
+            history = History.objects.create(
+                user = staff,
+                branch = branch,
+                activity = 'Sent for visa processing',
+                visa_app_id = visa.application_id,
+                visa_applicant = visa.name,
+            )
             messages.success(request, 'Docs downloaded and sent for visa application')
             return redirect('staff:new-visa-applications')
     context = {
@@ -414,6 +451,15 @@ def update_visa_status(request, pk):
         form = UpdateVisaStatusForm(request.POST, instance=application)
         if form.is_valid():
             form.save()
+            staff = request.user
+            branch = Staff.objects.get(user=staff).branch
+            history = History.objects.create(
+                user = staff,
+                branch = branch,
+                activity = application.status,
+                visa_app_id = application.application_id,
+                visa_applicant = application.name,
+            )
             messages.success(request, 'Visa status updated')
             if application.status=='Visa approved':
                 application.approved_date = timezone.now()
