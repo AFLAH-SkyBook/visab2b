@@ -17,6 +17,7 @@ from visamanagement.decorators import allowed_users
 def staff_report(request):
     branches = Branch.objects.all()
     countries = Country.objects.all()
+    # statuses = Document.objects.all()
     applications = Document.objects.all()
     branch = request.GET.get('branch')
     staff = request.GET.get('staff')
@@ -67,6 +68,7 @@ def staff_report(request):
 
     context = {
         "branches": branches,
+        "countries": countries,
         "countries": countries,
         "applications": applications,
         "count": count,

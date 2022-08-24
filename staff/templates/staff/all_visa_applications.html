@@ -29,9 +29,26 @@
                         <div class="card-body">
                                 <div class="d-flex align-items-center">
                                         <div>
-                                                <h6 class="mb-0">All visa applications</h6>
+                                                <a href="{% url 'staff:all-visa-applications' %}"><h6 class="mb-0">All visa applications</h6></a>
                                         </div>
-                                        <div class="dropdown ms-auto">
+                                        <div class="ms-auto">
+                                                <form method='GET'>
+                                                        <div class="position-relative search-bar-box">
+                                                                <input type="search" class="form-control search-control py-0 pt-1" name="search_bar" placeholder="app id / name" />
+                                                                <span class="position-absolute top-50 search-show translate-middle-y pt-1"><i class='bx bx-search'></i></span>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                        {% comment %} <div class="">
+                                                <form method='GET'>
+                                                        <div class="position-relative search-bar-box">
+                                                                <input type="search" class="form-control search-control py-0 pt-1" name="search_bar" placeholder="type to search..." />
+                                                                <span class="position-absolute top-50 search-show translate-middle-y pt-1"><i class='bx bx-search'></i></span>
+                                                        </div>
+                                                </form>
+                                        </div> {% endcomment %}
+                                        
+                                        <div class="dropdown">
                                                 <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
                                                 </a>
                                                 <ul class="dropdown-menu">

@@ -95,6 +95,14 @@ def dashboard_home(request):
 @allowed_users(allowed_roles=['manager','supervisor','staff'])
 def applications(request):
     applications = Application.objects.all()
+
+    search_bar = request.GET.get('search_bar')
+    if search_bar:
+        if search_bar.isnumeric():
+            applications = applications.filter(application_id__icontains=search_bar)
+        else:
+            applications = applications.filter(applicant_name__icontains=search_bar)
+    
     context = {
         "applications": applications,
     }
@@ -225,6 +233,14 @@ def add_application(request):
 @allowed_users(allowed_roles=['manager','supervisor','staff'])
 def all_visa_applications(request):
     applications = Document.objects.all()
+
+    search_bar = request.GET.get('search_bar')
+    if search_bar:
+        if search_bar.isnumeric():
+            applications = applications.filter(application_id__icontains=search_bar)
+        else:
+            applications = applications.filter(name__icontains=search_bar)
+    
     context = {
         "applications": applications
     }

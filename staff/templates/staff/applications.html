@@ -90,9 +90,19 @@
                         <div class="card-body">
                                 <div class="d-flex align-items-center mb-2">
                                         <div>
-                                                <h6 class="mb-0">All applications</h6>
+                                                <a href="{% url 'staff:applications' %}"><h6 class="mb-0">All applications</h6></a>
                                         </div>
-                                        <div class="dropdown ms-auto">
+
+                                        <div class="ms-auto">
+                                                <form method='GET'>
+                                                        <div class="position-relative search-bar-box">
+                                                                <input type="search" class="form-control search-control py-0 pt-1" name="search_bar" placeholder="app id / name" />
+                                                                <span class="position-absolute top-50 search-show translate-middle-y pt-1"><i class='bx bx-search'></i></span>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                        
+                                        <div class="dropdown">
                                                 <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
                                                 </a>
                                                 <ul class="dropdown-menu">
