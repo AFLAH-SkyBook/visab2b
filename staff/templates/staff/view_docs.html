@@ -27,7 +27,7 @@
                                 <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Nationality: {{ visa.nationality }}</li>
                                 <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Relation to applicant: {{ visa.relation_to_applicant }}</li>
                                 <hr>
-                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i><a href="../../../media/{{ visa.photo }}" target="_blank">Photo </a></li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.photo %}<a href="{{ visa.photo.url }}" target="_blank">Photo </a>{% endif %}</li>
                                 <div class="row">
                                     <div class="col-md-6 list-group-flush">
                                         <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>{% if visa.passport1 %}<a href="{{ visa.passport1.url }}" target="_blank">Passport1 </a>{% endif %}</li>
@@ -88,80 +88,153 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="phone" class="form-label">Email</label>
+                                    <label for="email" class="form-label">Email</label>
                                     {{ edit_form.email }}
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="phone" class="form-label">Gender</label>
+                                    <label for="gender" class="form-label">Gender</label>
                                     {{ edit_form.gender }}
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="phone" class="form-label">Nationality</label>
+                                    <label for="nationality" class="form-label">Nationality</label>
                                     {{ edit_form.nationality }}
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="application_status" class="form-label">Relation to applicant</label>
+                                    <label for="relation_to_applicant" class="form-label">Relation to applicant</label>
                                     {{ edit_form.relation_to_applicant }}
                                 </div>
 
                                 <div class="col-md-6">
-                                        <label for="application_status" class="form-label">Photo</label>
-                                        {{ edit_form.photo }}
+                                    {% if visa.photo %}
+                                        <label for="photo" class="form-label text-danger fw-bold">
+                                            Photo
+                                        </label>
+                                    {% else %}
+                                        <label for="photo" class="form-label">
+                                            Photo
+                                        </label>
+                                    {% endif %}
+                                    {{ edit_form.photo }}
                                 </div>
 
                                 <div class="col-md-6">
-                                        <label for="application_status" class="form-label">Passport1</label>
-                                        {{ edit_form.passport1 }}
+                                    {% if visa.passport1 %}
+                                        <label for="passport1" class="form-label text-danger fw-bold">
+                                            Passport1
+                                        </label>
+                                    {% else %}
+                                        <label for="passport1" class="form-label">
+                                            Passport1
+                                        </label>
+                                    {% endif %}
+                                    {{ edit_form.passport1 }}
                                 </div>
 
                                 <div class="col-md-6">
-                                        <label for="application_status" class="form-label">Passport2</label>
-                                        {{ edit_form.passport2 }}
+                                    {% if visa.passport2 %}
+                                        <label for="passport2" class="form-label text-danger fw-bold">
+                                            Passport2
+                                        </label>
+                                    {% else %}
+                                        <label for="passport2" class="form-label">
+                                            Passport2
+                                        </label>
+                                    {% endif %}
+                                    {{ edit_form.passport2 }}
                                 </div>
 
                                 <div class="col-md-6">
-                                        <label for="application_status" class="form-label">Onward ticket</label>
-                                        {{ edit_form.onward_ticket }}
+                                    {% if visa.onward_ticket %}
+                                        <label for="onward_ticket" class="form-label text-danger fw-bold">
+                                            Onward ticket
+                                        </label>
+                                    {% else %}
+                                        <label for="onward_ticket" class="form-label">
+                                            Onward ticket
+                                        </label>
+                                        {% endif %}
+                                    {{ edit_form.onward_ticket }}
                                 </div>
 
                                 <div class="col-md-6">
-                                        <label for="application_status" class="form-label">Return ticket</label>
+                                    {% if visa.return_ticket %}
+                                        <label for="return_ticket" class="form-label text-danger fw-bold">
+                                            Return ticket
+                                        </label>
+                                    {% else %}
+                                        <label for="return_ticket" class="form-label">
+                                            Return ticket
+                                        </label>
+                                    {% endif %}
                                         {{ edit_form.return_ticket }}
                                 </div>
 
                                 <div class="col-md-6">
-                                        <label for="application_status" class="form-label">Document1</label>
-                                        {{ edit_form.document1 }}
+                                    {% if visa.document1 %}
+                                        <label for="document1" class="form-label text-danger fw-bold">
+                                            Document1
+                                        </label>
+                                    {% else %}
+                                        <label for="document1" class="form-label">
+                                            Document1
+                                        </label>
+                                    {% endif %}
+                                    {{ edit_form.document1 }}
                                 </div>
 
                                 <div class="col-md-6">
-                                        <label for="application_status" class="form-label">Document2</label>
-                                        {{ edit_form.document2 }}
+                                    {% if visa.document2 %}
+                                        <label for="document2" class="form-label text-danger fw-bold">
+                                            Document2
+                                        </label>
+                                    {% else %}
+                                        <label for="document2" class="form-label">
+                                            Document2
+                                        </label>
+                                    {% endif %}
+                                    {{ edit_form.document2 }}
                                 </div>
 
                                 <div class="col-md-6">
-                                        <label for="application_status" class="form-label">Document3</label>
-                                        {{ edit_form.document3 }}
+                                    {% if visa.document3 %}
+                                        <label for="document3" class="form-label text-danger fw-bold">
+                                            Document3
+                                        </label>
+                                    {% else %}
+                                        <label for="document3" class="form-label">
+                                            Document3
+                                        </label>
+                                    {% endif %}
+                                    {{ edit_form.document3 }}
                                 </div>
 
                                 <div class="col-md-6">
-                                        <label for="application_status" class="form-label">Document4</label>
-                                        {{ edit_form.document4 }}
+                                    {% if visa.document4 %}
+                                        <label for="document4" class="form-label text-danger fw-bold">
+                                            Document4
+                                        </label>
+                                    {% else %}
+                                        <label for="document4" class="form-label">
+                                            Document4
+                                        </label>
+                                    {% endif %}
+                                    {{ edit_form.document4 }}
                                 </div>
 
                                 <div class="col-md-6">
-                                        <label for="application_status" class="form-label">Status</label>
-                                        {{ edit_form.status }}
+                                    <label for="status" class="form-label">
+                                        Status
+                                    </label>
+                                    {{ edit_form.status }}
                                 </div>
                                 
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary px-5">Update</button>
                                 </div>
                             </form>
-
 
                         </div>
                     </div>

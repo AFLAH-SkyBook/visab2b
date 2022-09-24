@@ -32,6 +32,9 @@
                                         <div>
                                                 <h6 class="mb-0">Processed visas</h6>
                                         </div>
+                                        <div class="ms-4">
+                                                <p class="mb-0 fw-bold font-italic"> application status: <span class="badge bg-gradient-quepal text-white shadow-sm w-full py-1 fs-7">{{ status }}</span></p>
+                                        </div>
                                         <div class="dropdown ms-auto">
                                                 <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
                                                 </a>
@@ -54,9 +57,10 @@
                                                         <tr>
                                                         <th>Application ID</th>
                                                         <th>Visa applicant</th>
+                                                        <th>Applicant phone</th>
+                                                        <th>Nationality</th>
                                                         <th>Visa country</th>
                                                         <th>Visa type</th>
-                                                        <th>Visa Status</th>
                                                         <th>Update status</th>
                                                         </tr>
                                                 </thead>
@@ -65,9 +69,10 @@
                                                         <tr class="">
                                                                 <td class="py-3 text-primary fs-5 fw-bold">{{ application.application_id }}</td>
                                                                 <td class="fs-6 fw-bold">{{ application.name }}</td>
+                                                                <td class="fs-6 fw-bold">{{ application.phone }}</td>
+                                                                <td class="fs-6 fw-bold">{{ application.nationality }}</td>
                                                                 <td>{{ application.visa_country }}</td>
                                                                 <td>{{ application.type }}</td>
-                                                                <td><span class="badge bg-gradient-quepal text-white shadow-sm w-75 py-2 fs-6">{{ application.status }}</span></td>
                                                                 <td><a href="{% url 'staff:update-visa-status' application.id %}"><button type="button" class="btn btn-info px-3 py-1 radius-10 fs-6">Update</button></a></td>
                                                         </tr>
                                                         {% endfor %}

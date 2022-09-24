@@ -1123,31 +1123,48 @@ def staff_history(request):
     fromDate = request.GET.get('date_from')
     toDate = request.GET.get('date_to')
 
+    show = 0  # Variable used to show the table or not
+
     if staff != '' and staff is not None:
         staff_history = staff_history.filter(user__icontains=staff)
+        show = 1
 
     if branch != '' and branch is not None:
         staff_history = staff_history.filter(branch=branch)
+        show = 1
 
     if app_id != '' and app_id is not None:
         staff_history = staff_history.filter(visa_app_id__icontains=app_id)
+        show = 1
 
     if activity != '' and activity is not None:
         staff_history = staff_history.filter(activity=activity)
+        show = 1
 
     if fromDate != '' and fromDate is not None:
         staff_history = staff_history.filter(time__gte=fromDate)
+        show = 1
 
     if toDate != '' and toDate is not None:
         toDate = datetime.datetime.strptime(toDate, '%Y-%m-%d')
         toDate += datetime.timedelta(days=1)
         staff_history = staff_history.filter(time__lt=toDate)
+        show = 1
 
-    context = {
-        "staff_history": staff_history,
-        "branches": Branch.objects.all(),
-    }
-    return render(request, 'report/staff_history.html',context)
+    if show == 0:
+        context = { 
+            "staff_history": staff_history,
+            "branches": Branch.objects.all(),
+        }
+        return render(request, 'report/staff_history.html',context)
+        
+    else:
+        context = { 
+            "show": show,
+            "staff_history": staff_history,
+            "branches": Branch.objects.all(),
+        }
+        return render(request, 'report/staff_history.html',context)
 
 
 

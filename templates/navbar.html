@@ -30,17 +30,17 @@
                     <div class="menu-title">Applications</div>
                 </a>
                 <ul>
-                    <li> <a href="{% url 'staff:applications' %}"><i class="bx bx-right-arrow-alt"></i>all</a>
+                    <li> <a href="{% url 'staff:applications' %}"><i class="bx bx-right-arrow-alt"></i>All</a>
                     </li>
-                    <li> <a href="{% url 'staff:new-applications' %}"><i class="bx bx-right-arrow-alt"></i>new</a>
+                    <li> <a href="{% url 'staff:new-applications' %}"><i class="bx bx-right-arrow-alt"></i>New</a>
                     </li>
-                    <li> <a href="{% url 'staff:contacted-applications' %}"><i class="bx bx-right-arrow-alt"></i>contacted</a>
+                    <li> <a href="{% url 'staff:contacted-applications' %}"><i class="bx bx-right-arrow-alt"></i>Contacted</a>
                     </li>
-                    <li> <a href="{% url 'staff:docs-uploaded-applications' %}"><i class="bx bx-right-arrow-alt"></i>documents uploaded</a>
+                    <li> <a href="{% url 'staff:docs-uploaded-applications' %}"><i class="bx bx-right-arrow-alt"></i>Documents uploaded</a>
                     </li>
-                    <li> <a href="{% url 'staff:processing-applications' %}"><i class="bx bx-right-arrow-alt"></i>sent for processing</a>
+                    <li> <a href="{% url 'staff:processing-applications' %}"><i class="bx bx-right-arrow-alt"></i>Sent for processing</a>
                     </li>
-                    <li> <a href="{% url 'staff:approved-applications' %}"><i class="bx bx-right-arrow-alt"></i>approved </a>
+                    <li> <a href="{% url 'staff:approved-applications' %}"><i class="bx bx-right-arrow-alt"></i>Approved </a>
                     </li>
                 </ul>
             </li>
@@ -51,9 +51,9 @@
                     <div class="menu-title">Existing customers</div>
                 </a>
                 <ul>
-                    <li> <a href="{% url 'staff:existing-customers-applications' %}"><i class="bx bx-right-arrow-alt"></i>new applications</a>
+                    <li> <a href="{% url 'staff:existing-customers-applications' %}"><i class="bx bx-right-arrow-alt"></i>New applications</a>
                     </li>
-                    <li> <a href="{% url 'staff:existing-customers-contacted' %}"><i class="bx bx-right-arrow-alt"></i>contacted applications</a>
+                    <li> <a href="{% url 'staff:existing-customers-contacted' %}"><i class="bx bx-right-arrow-alt"></i>Contacted applications</a>
                     </li>
                     <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>3</a>
                     </li>
@@ -68,16 +68,16 @@
                     <div class="menu-title">Visa</div>
                 </a>
                 <ul>
-                    <li> <a href="{% url 'staff:all-visa-applications' %}"><i class="bx bx-right-arrow-alt"></i>all</a>
+                    <li> <a href="{% url 'staff:all-visa-applications' %}"><i class="bx bx-right-arrow-alt"></i>All</a>
                     </li>
-                    <li> <a href="{% url 'staff:new-visa-applications' %}"><i class="bx bx-right-arrow-alt"></i>new</a>
+                    <li> <a href="{% url 'staff:new-visa-applications' %}"><i class="bx bx-right-arrow-alt"></i>New</a>
                     </li>
                     {% if request.user|has_group:"supervisor" %}
-                    <li> <a href="{% url 'staff:processed-visas' %}"><i class="bx bx-right-arrow-alt"></i>processed visas</a>
+                    <li> <a href="{% url 'staff:processed-visas' %}"><i class="bx bx-right-arrow-alt"></i>Processed visas</a>
                     </li>
-                    <li> <a href="{% url 'staff:approved-visas' %}"><i class="bx bx-right-arrow-alt"></i>approved visas</a>
+                    <li> <a href="{% url 'staff:approved-visas' %}"><i class="bx bx-right-arrow-alt"></i>Approved visas</a>
                     </li>
-                    <li> <a href="{% url 'staff:rejected-visas' %}"><i class="bx bx-right-arrow-alt"></i>rejected visas</a>
+                    <li> <a href="{% url 'staff:rejected-visas' %}"><i class="bx bx-right-arrow-alt"></i>Rejected visas</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -106,7 +106,7 @@
                     <div class="menu-title">History</div>
                 </a>
                 <ul>
-                    <li> <a href="{% url 'report:staff-history' %}"><i class="bx bx-right-arrow-alt"></i>Staff history</a>
+                    <li> <a href="{% url 'report:staff-history' %}"><i class="bx bx-right-arrow-alt"></i>Staff activity</a>
                     </li>
                     <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>2</a>
                     </li>

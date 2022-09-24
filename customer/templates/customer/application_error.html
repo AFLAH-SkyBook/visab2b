@@ -12,7 +12,7 @@
                                 <div class="card">
                                         <div class="card-body">
                                                 <div class="card-title">
-                                                        <h3 class="mb-2 text-center">APPLICATION ERROR</h3><h5 class="mb-0 text-center">Application with the phone number {{ phone_no }} already exists</h5>
+                                                        <h3 class="mb-2 text-center text-danger fw-bold">APPLICATION ERROR</h3><h5 class="mb-0 text-center">Application with the phone number {{ phone_no }} already exists</h5>
                                                 </div>
                                                 <hr/>
                                                 <div class="row row-cols-auto g-3 justify-content-lg-center">
@@ -20,10 +20,12 @@
 
                                                                 <h5 class="card-title text-center text-danger">Try these: </h5>
 
-                                                                <p> Select existing customer and apply using the customer id </p>
-                                                                <p> Apply using different email and phone number </p>
-
-                                                                <a href="{% url 'customer:apply-visa' visa.id %}"> <button class="flex mx-auto mt-4 text-white bg-primary border-0 py-1 px-4 focus:outline-none hover:bg-green-600 rounded text-lg">Back to home</button></a>
+                                                                <p class="text-center"> Select existing customer and apply using the customer id </p>
+                                                                <p class="text-center"> Apply using different email and phone number </p>
+                                                                <div class="w-50 mx-auto text-center">
+                                                                        <a href="{% url 'customer:apply-visa' visa.id %}" class="text-white bg-primary border-0 py-2 px-3 rounded">Back to home</button>
+                                                                        </a>
+                                                                </div>
 
                                                         </div>
                                                 </div>

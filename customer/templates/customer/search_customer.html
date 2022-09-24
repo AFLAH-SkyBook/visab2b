@@ -12,14 +12,14 @@
 			<div class="row">
 				<div class="col-xl-7 mx-auto">
 					<div class="card border-top border-0 border-4 border-info">
-						<div class="card-body p-5">
+						<div class="card-body text-center p-5">
 
 								<div class="col-md-12">
-									<p>Customer id: {{ customer.customer_id }}
+									<p class="fs-5">Customer id: {{ customer.customer_id }}
 								</div>
 								
-								<div class="col-6">
-									<a href="{% url 'customer:apply-visa' visa.id %}" <button type="submit" class="btn btn-primary px-5">Back</button></a>
+								<div class="col-md-12">
+									<a href="{% url 'customer:apply-visa' visa.id %}" class="btn btn-primary px-4 py-1">Back</a>
 								</div>
 
 						</div>

@@ -1,4 +1,5 @@
 {% extends "dashboard.html" %}
+{% load is_existing %}
 
 {% block title %}All applications{% endblock title %}
 
@@ -6,7 +7,6 @@
 <div class="page-wrapper">
         <div class="page-content">
                 <!-- Start Content -->
-                
 		
                 {% comment %} <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 row-cols-xxl-4">
                         <div class="col">
@@ -66,7 +66,6 @@
                                 </div>
                         </div> 
                 </div><!--end row--> {% endcomment %}
-
 
                 {% if messages %}
                 <div class="alert border-0 border-start border-5 border-success alert-dismissible fade show py-2">
@@ -137,7 +136,15 @@
                                                                 <td class="py-3 text-primary fs-5 fw-bold">{{ application.application_id }}</td>
                                                                 <td class="fs-6 fw-bold">{{ application.applicant_name }}</td>
                                                                 <td>{{ application.applicant_email }}</td>
-                                                                <td>{{ application.existing_customer }}</td>
+                                                                {% if application.id|is_existing %}
+                                                                        <td class="text-success fw-bold fs-6">
+                                                                                YES
+                                                                        </td>
+                                                                {% else %}
+                                                                        <td class="text-warning fw-bold fs-6">
+                                                                                NO
+                                                                        </td>
+                                                                {% endif %}
                                                                 <td><span class="badge bg-gradient-quepal text-white shadow-sm w-75 py-2 fs-6">{{ application.application_status }}</span></td>
                                                                 <td><a href="{% url 'customer:view-application-details' application.id %}"><button type="button" class="btn btn-info px-3 py-1 radius-10 fs-6">View</button></a></td>
                                                                 <td><a href="{% url 'staff:view-visa-details' application.application_id %}"><button type="button" class="btn btn-info px-3 py-1 radius-10 fs-6">View</button></a></td>

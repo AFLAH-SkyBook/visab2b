@@ -64,7 +64,7 @@
 										</div>
 									</div> {% endcomment %}
 									<div class="col-12">
-										<button type="submit" class="btn btn-primary px-5">Filter</button>
+										<button type="submit" class="btn btn-primary px-5" value='btn' name="filter">Filter</button>
 									</div>
 								</form>
 							</div>
@@ -76,6 +76,7 @@
 				<br>
 				<hr>
 
+				{% if show %}
 				<div class="table-responsive">
 					<table class="table table-striped align-middle">
 
@@ -111,6 +112,9 @@
 				
 					</table>
 				</div>
+				{% else %}
+				<p class="text-center">No records found</p>
+				{% endif %}
 
 
 			<!-- END CONTENT -->

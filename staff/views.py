@@ -253,6 +253,7 @@ def all_visa_applications(request):
 def new_visa_applications(request):
     applications = Document.objects.filter(status='Documents Uploaded')
     context = {
+        "status": "Documents Uploaded",
         "applications": applications
     }
     return render(request,"staff/new_visa_applications.html", context)
@@ -264,6 +265,7 @@ def new_visa_applications(request):
 def processed_visas(request):
     applications = Document.objects.filter(status='Sent for visa processing')
     context = {
+        "status": "Sent for visa processing",
         "applications": applications
     }
     return render(request,"staff/processed_visas.html", context)
@@ -275,6 +277,7 @@ def processed_visas(request):
 def approved_visas(request):
     applications = Document.objects.filter(status='Visa approved')
     context = {
+        "status": "Visa approved",
         "applications": applications
     }
     return render(request,"staff/approved_visas.html", context)
@@ -286,6 +289,7 @@ def approved_visas(request):
 def rejected_visas(request):
     applications = Document.objects.filter(status='Application rejected')
     context = {
+        "status": "Application rejected",
         "applications": applications
     }
     return render(request,"staff/rejected_visas.html", context)
