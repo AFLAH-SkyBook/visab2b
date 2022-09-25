@@ -13,17 +13,12 @@
                                 <div class="card">
                                         <div class="card-body">
                                                 <div class="card-title">
-                                                        <h3 class="mb-2 text-center">APPLICATION STATUS</h3><h5 class="mb-0 text-center">Application Id: {{ application.application_id }} &emsp; Name: {{ application.applicant_name }}</h5>
+                                                        <h3 class="mb-2 text-center">APPLICATION STATUS</h3><h5 class="mb-0 text-center">Application Id: {{ application.application_id }} &emsp; Name: {{ application.name }}</h5>
                                                 </div>
                                                 <hr/>
                                                 <div class="row justify-content-lg-center">
                                                         <div class="col-lg-8">
                                                                         <div class="card-body">
-                                                                                {% if user.is_authenticated %}
-                                                                                <div class="">
-                                                                                        <h5 class="card-title text-center text-danger mx-lg-5">Status: {{ application.application_status }}</h5>
-                                                                                </div>
-                                                                                {% endif %}
                                                                                 <div class="text-center mt-3">
                                                                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleScrollableModal">view visa status</button>
                                                                                 </div>

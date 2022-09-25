@@ -22,17 +22,8 @@ def home_page(request):
         elif form2.is_valid():
             app_id = form2.cleaned_data['application_id']
             phone = form2.cleaned_data['phone']
-            application = Application.objects.get(application_id=app_id, applicant_phone=phone)
+            application = Document.objects.get(application_id=app_id, phone=phone)
             visas = Document.objects.filter(application_id=app_id)
-
-            if application.application_status == 'Visa approved':
-                status = 'Visa approved'
-                context = {
-                    "application": application,
-                    "visas": visas,
-                    "status": status
-                }
-                return render(request,"customer/view_application_status.html", context)
 
             context = {
                 "application": application,
