@@ -24,6 +24,8 @@
                                 <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Name: {{ visa.name }}</li>
                                 <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Phone: {{ visa.phone }}</li>
                                 <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Email: {{ visa.email }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Gender: {{ visa.gender }}</li>
+                                <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Age: {{ visa.age }}</li>
                                 <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Nationality: {{ visa.nationality }}</li>
                                 <li class="list-group-item"><i class='bx bx-paper-plane me-2 font-18'></i>Relation to applicant: {{ visa.relation_to_applicant }}</li>
                                 <hr>
@@ -95,6 +97,11 @@
                                 <div class="col-md-6">
                                     <label for="gender" class="form-label">Gender</label>
                                     {{ edit_form.gender }}
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="gender" class="form-label">Age</label>
+                                    {{ edit_form.age }}
                                 </div>
 
                                 <div class="col-md-6">

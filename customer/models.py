@@ -73,7 +73,7 @@ class Application(models.Model):
 
 
 # Upload documents model
-class   Document(models.Model):
+class Document(models.Model):
 
     STATUS_CHOICES = (('Documents Uploaded','Documents Uploaded'),('Sent for visa processing','Sent for visa processing'),('Visa approved','Visa approved'),('Application rejected','Application rejected') )
     GENDER_CHOICES = (('Male','Male'),('Female','Female'),('Other','Other') )
@@ -82,6 +82,7 @@ class   Document(models.Model):
     phone = models.CharField(max_length=12)
     email = models.EmailField()
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default="Nil")
+    age = models.PositiveIntegerField()
     nationality = models.ForeignKey(Nation, on_delete=models.SET_DEFAULT, null=True, default='1')
     
     relation_to_applicant = models.CharField(max_length=50, blank=True, null=True, default="Self")

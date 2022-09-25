@@ -17,10 +17,9 @@
                     <div class="menu-title">Dashboard</div>
                 </a>
                 <ul>
-                    <li> <a href="{% url 'staff:dashboard-home' %}"><i class="bx bx-right-arrow-alt"></i>Dashboard home</a>
+                    <li> <a href="{% url 'staff:dashboard-home' %}"><i class="bx bx-right-arrow-alt"></i>Dashboard Home</a>
                     </li>
-                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Link 2</a>
-                    </li>
+                 
                 </ul>
             </li>
             <li>
@@ -30,17 +29,17 @@
                     <div class="menu-title">Applications</div>
                 </a>
                 <ul>
-                    <li> <a href="{% url 'staff:applications' %}"><i class="bx bx-right-arrow-alt"></i>All</a>
+                    <li> <a href="{% url 'staff:applications' %}"><i class="bx bx-right-arrow-alt"></i>All Applications</a>
                     </li>
-                    <li> <a href="{% url 'staff:new-applications' %}"><i class="bx bx-right-arrow-alt"></i>New</a>
+                    <li> <a href="{% url 'staff:new-applications' %}"><i class="bx bx-right-arrow-alt"></i>New Applications</a>
                     </li>
-                    <li> <a href="{% url 'staff:contacted-applications' %}"><i class="bx bx-right-arrow-alt"></i>Contacted</a>
+                    <li> <a href="{% url 'staff:contacted-applications' %}"><i class="bx bx-right-arrow-alt"></i>Contacted Applications</a>
                     </li>
-                    <li> <a href="{% url 'staff:docs-uploaded-applications' %}"><i class="bx bx-right-arrow-alt"></i>Documents uploaded</a>
+                    <li> <a href="{% url 'staff:docs-uploaded-applications' %}"><i class="bx bx-right-arrow-alt"></i>Documents Uploaded</a>
                     </li>
-                    <li> <a href="{% url 'staff:processing-applications' %}"><i class="bx bx-right-arrow-alt"></i>Sent for processing</a>
+                    <li> <a href="{% url 'staff:processing-applications' %}"><i class="bx bx-right-arrow-alt"></i>Sent For Processing</a>
                     </li>
-                    <li> <a href="{% url 'staff:approved-applications' %}"><i class="bx bx-right-arrow-alt"></i>Approved </a>
+                    <li> <a href="{% url 'staff:approved-applications' %}"><i class="bx bx-right-arrow-alt"></i>Approved Applications</a>
                     </li>
                 </ul>
             </li>
@@ -48,17 +47,14 @@
                 <a class="has-arrow" href="javascript:;">
                     <div class="parent-icon"><i class="bx bx-user"></i>
                     </div>
-                    <div class="menu-title">Existing customers</div>
+                    <div class="menu-title">Existing Customers</div>
                 </a>
                 <ul>
-                    <li> <a href="{% url 'staff:existing-customers-applications' %}"><i class="bx bx-right-arrow-alt"></i>New applications</a>
+                    <li> <a href="{% url 'staff:existing-customers-applications' %}"><i class="bx bx-right-arrow-alt"></i>New Applications</a>
                     </li>
-                    <li> <a href="{% url 'staff:existing-customers-contacted' %}"><i class="bx bx-right-arrow-alt"></i>Contacted applications</a>
+                    <li> <a href="{% url 'staff:existing-customers-contacted' %}"><i class="bx bx-right-arrow-alt"></i>Contacted Applications</a>
                     </li>
-                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>3</a>
-                    </li>
-                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>4</a>
-                    </li>
+                 
                 </ul>
             </li>
             <li>
@@ -68,16 +64,16 @@
                     <div class="menu-title">Visa</div>
                 </a>
                 <ul>
-                    <li> <a href="{% url 'staff:all-visa-applications' %}"><i class="bx bx-right-arrow-alt"></i>All</a>
+                    <li> <a href="{% url 'staff:all-visa-applications' %}"><i class="bx bx-right-arrow-alt"></i>All Visa Applications</a>
                     </li>
-                    <li> <a href="{% url 'staff:new-visa-applications' %}"><i class="bx bx-right-arrow-alt"></i>New</a>
+                    <li> <a href="{% url 'staff:new-visa-applications' %}"><i class="bx bx-right-arrow-alt"></i>New Visa Applications</a>
                     </li>
                     {% if request.user|has_group:"supervisor" %}
-                    <li> <a href="{% url 'staff:processed-visas' %}"><i class="bx bx-right-arrow-alt"></i>Processed visas</a>
+                    <li> <a href="{% url 'staff:processed-visas' %}"><i class="bx bx-right-arrow-alt"></i>Processed Visas</a>
                     </li>
-                    <li> <a href="{% url 'staff:approved-visas' %}"><i class="bx bx-right-arrow-alt"></i>Approved visas</a>
+                    <li> <a href="{% url 'staff:approved-visas' %}"><i class="bx bx-right-arrow-alt"></i>Approved Visas</a>
                     </li>
-                    <li> <a href="{% url 'staff:rejected-visas' %}"><i class="bx bx-right-arrow-alt"></i>Rejected visas</a>
+                    <li> <a href="{% url 'staff:rejected-visas' %}"><i class="bx bx-right-arrow-alt"></i>Rejected Visas</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -94,8 +90,7 @@
                     </li>
                     <li> <a href="{% url 'report:customer-report' %}"><i class="bx bx-right-arrow-alt"></i>Customer</a>
                     </li>
-                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Report 3</a>
-                    </li>
+                   
                 </ul>
             </li>
             
@@ -106,9 +101,9 @@
                     <div class="menu-title">History</div>
                 </a>
                 <ul>
-                    <li> <a href="{% url 'report:staff-history' %}"><i class="bx bx-right-arrow-alt"></i>Staff activity</a>
+                    <li> <a href="{% url 'report:staff-history' %}"><i class="bx bx-right-arrow-alt"></i>Staff Activity</a>
                     </li>
-                    <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>2</a>
+                    {% comment %} <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>2</a>
                     </li>
                     <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>3</a>
                     </li>
@@ -121,7 +116,7 @@
                             <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>3</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> {% endcomment %}
                 </ul>
             </li>
             {% endif %}
@@ -131,16 +126,16 @@
                 <a class="has-arrow" href="javascript:;">
                     <div class="parent-icon"><i class='bx bx-message-square-edit'></i>
                     </div>
-                    <div class="menu-title">Add data</div>
+                    <div class="menu-title">Admin</div>
                 </a>
                 <ul>
-                    <li> <a href="{% url 'manager:add-nation' %}"><i class="bx bx-right-arrow-alt"></i>Applicant nation</a>
+                    <li> <a href="{% url 'manager:add-nation' %}"><i class="bx bx-right-arrow-alt"></i>Nationality</a>
                     </li>
-                    <li> <a href="{% url 'manager:add-country' %}"><i class="bx bx-right-arrow-alt"></i>Visa Country</a>
+                    <li> <a href="{% url 'manager:add-country' %}"><i class="bx bx-right-arrow-alt"></i>Country</a>
                     </li>
-                    <li> <a href="{% url 'manager:add-visa' %}"><i class="bx bx-right-arrow-alt"></i>Add visa</a>
+                    <li> <a href="{% url 'manager:add-visa' %}"><i class="bx bx-right-arrow-alt"></i>Visa Type</a>
                     </li>
-                    <li> <a href="{% url 'manager:select-country' %}"><i class="bx bx-right-arrow-alt"></i>Needed documents</a>
+                    <li> <a href="{% url 'manager:select-country' %}"><i class="bx bx-right-arrow-alt"></i>Documents Required</a>
                     </li>
                 </ul>
             </li>

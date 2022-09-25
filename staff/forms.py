@@ -5,12 +5,13 @@ from customer.models import Application, Document
 class UploadDocumentsForm(forms.ModelForm):
     class Meta:
         model = Document
-        fields = ['name','phone','email','gender','nationality', 'relation_to_applicant', 'passport1','passport2','photo','onward_ticket','return_ticket','document1','document2','document3','document4','status','add_person','upload_visa']
+        fields = ['name','phone','email','gender','age','nationality', 'relation_to_applicant', 'passport1','passport2','photo','onward_ticket','return_ticket','document1','document2','document3','document4','status','add_person','upload_visa']
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control'}),
             'phone': forms.NumberInput(attrs={'class':'form-control'}),
             'email': forms.EmailInput(attrs={'class':'form-control'}),
             'gender': forms.Select(attrs={'class':'form-control form-select'}),
+            'age': forms.NumberInput(attrs={'class':'form-control'}),
             'nationality': forms.Select(attrs={'class':'form-control form-select'}),
             'relation_to_applicant': forms.TextInput(attrs={'class':'form-control'}),
             'passport1': forms.FileInput(attrs={'class':'form-control'}),
@@ -60,12 +61,13 @@ class UploadVisaForm(forms.ModelForm):
 class DocumentUpdateForm(forms.ModelForm):
     class Meta:
         model = Document
-        fields = ['name','photo','phone','email','gender','nationality','relation_to_applicant', 'passport1','passport2','photo','onward_ticket','return_ticket','document1','document2','document3','document4','status','add_person']
+        fields = ['name','photo','phone','email','gender','age','nationality','relation_to_applicant', 'passport1','passport2','photo','onward_ticket','return_ticket','document1','document2','document3','document4','status','add_person']
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control'}),
             'phone': forms.NumberInput(attrs={'class':'form-control'}),
             'email': forms.EmailInput(attrs={'class':'form-control'}),
             'gender': forms.Select(attrs={'class':'form-control form-select'}),
+            'age': forms.NumberInput(attrs={'class':'form-control'}),
             'nationality': forms.Select(attrs={'class':'form-control form-select'}),
             'relation_to_applicant': forms.TextInput(attrs={'class':'form-control'}),
             'status': forms.Select(attrs={'class':'form-control form-select'}),
