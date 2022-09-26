@@ -96,7 +96,10 @@ def customer_report(request):
     total = applications.count()
 
     if cus_id != '' and cus_id is not None:
-        prev_id = SavedCustomer.objects.get(customer_id=cus_id).prev_id
+        try:
+            prev_id = SavedCustomer.objects.get(customer_id=cus_id).prev_id
+        except:
+            return HttpResponse("No matching Customer ID")
         application_ids = Application.objects.filter(prev_id=prev_id)
         aplctns = Document.objects.none()
         for aplctn_id in application_ids:

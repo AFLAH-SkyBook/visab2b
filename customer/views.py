@@ -46,7 +46,10 @@ def apply_visa(request, pk):
 
         elif request.POST['customer_id'] is not None:
             id = request.POST['customer_id']
-            customer = SavedCustomer.objects.get(customer_id=id)
+            try:
+                customer = SavedCustomer.objects.get(customer_id=id)
+            except:
+                return HttpResponse("Customer ID Error")
             context = {
                 "visa": visa,
                 "form4": SavedCustomerForm(instance=customer),
@@ -56,7 +59,10 @@ def apply_visa(request, pk):
     email = request.GET.get('email')
     phone = request.GET.get('phone')
     if email is not None and phone is not None :
-        customer = SavedCustomer.objects.get(applicant_phone=phone,applicant_email=email)
+        try:
+            customer = SavedCustomer.objects.get(applicant_phone=phone,applicant_email=email)
+        except:
+                return HttpResponse("Customer ID not Found")
         context = {
             "visa": visa,
             "customer": customer,

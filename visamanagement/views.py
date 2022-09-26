@@ -22,8 +22,11 @@ def home_page(request):
         elif form2.is_valid():
             app_id = form2.cleaned_data['application_id']
             phone = form2.cleaned_data['phone']
-            application = Document.objects.get(application_id=app_id, phone=phone)
-            visas = Document.objects.filter(application_id=app_id)
+            try:
+                application = Document.objects.get(application_id=app_id, phone=phone)
+                visas = Document.objects.filter(application_id=app_id)
+            except:
+                return HttpResponse("ID and Phone No. doesn't match")
 
             context = {
                 "application": application,

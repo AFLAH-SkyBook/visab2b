@@ -314,7 +314,10 @@ def upload_documents(request, pk):
             document.visa_country = application.visa_country
             document.type = application.type
             staff = request.user
-            branch = Staff.objects.get(user=staff).branch
+            try:
+                branch = Staff.objects.get(user=staff).branch
+            except:
+                return HttpResponse('No branch specified')
             document.upload_branch = branch
             document.upload_by = staff
             document.upload_date = timezone.now()
@@ -358,7 +361,10 @@ def upload_existing_documents(request, pk):
             document.visa_country = application.visa_country
             document.type = application.type
             staff = request.user
-            branch = Staff.objects.get(user=staff).branch
+            try:
+                branch = Staff.objects.get(user=staff).branch
+            except:
+                return HttpResponse('No branch specified')
             document.upload_branch = branch
             document.upload_by = staff
             document.upload_date = timezone.now()
@@ -425,7 +431,10 @@ def download_docs(request, pk):
             visa.process_date = timezone.now()
             visa.save()
             staff = request.user
-            branch = Staff.objects.get(user=staff).branch
+            try:
+                branch = Staff.objects.get(user=staff).branch
+            except:
+                return HttpResponse('No branch specified')
             history = History.objects.create(
                 user = staff,
                 branch = branch,
@@ -472,7 +481,10 @@ def update_visa_status(request, pk):
         if form.is_valid():
             form.save()
             staff = request.user
-            branch = Staff.objects.get(user=staff).branch
+            try:
+                branch = Staff.objects.get(user=staff).branch
+            except:
+                return HttpResponse('No branch specified')
             history = History.objects.create(
                 user = staff,
                 branch = branch,
