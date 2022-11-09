@@ -4,34 +4,176 @@
 {% block title %}VisaB2b{% endblock title %}
 
 {% block content %}
+<head>
 
-    <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="TemplateMo">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-            <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="" src="{% static 'assets/images/picture_2_travel.jpeg' %}">
+  <title>VisaB2b</title>
 
-            <div class="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'Visab2b/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Let's make your visas much easier and effectively</h1>
-                <p class="sm:mb-8 mb-2 leading-relaxed">Kickstarter biodiesel roof party wayfarers cold-pressed. Palo santo live-edge tumeric scenester copper mug flexitarian. Prism vice offal plaid everyday carry. Gluten-free chia VHS squid listicle artisan.</p>
 
-                <div class="flex w-full justify-center items-end">
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="{% static 'Visab2b/assets/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static 'Visab2b/assets/css/templatemo-edu-meeting.css' %}">
+  <link rel="stylesheet" href="{% static 'Visab2b/assets/css/owl.css' %}">
+  <link rel="stylesheet" href="{% static 'Visab2b/assets/css/lightbox.css' %}">
+<!--
 
-                    <!--<div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
-                        <label for="hero-field" class="leading-7 text-sm text-gray-600">Placeholder</label>
-                        <input type="text" id="hero-field" name="hero-field" class="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-pink-200 focus:bg-transparent border border-gray-300 focus:border-pink-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                    </div>-->
-                    <a href="{% url 'home-page' %}"><button class="flex-shrink-0 text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg mt-2 sm:mt-10">Get Started</button></a>
+TemplateMo 569 Edu Meeting
 
-                </div>
-                
+https://templatemo.com/tm-569-edu-meeting
 
-            </div>
+-->
+</head>
 
+<body>
+
+  <!-- Sub Header -->
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content">
+            <p class="fa fa-phone">+012 345 6789<em>|</em></p><p2 class="fa fa-envelope"> info@example.com</p2>
+          </div>
         </div>
-    </section>
+        <div class="col-lg-4 col-sm-4">
+          <div class="right-icons">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+            <a href="#" class="logo">
+              <img src="{% static 'Visab2b/assets/images/visa-b2b.png' %}">
+            </a>
+                      <!-- ***** Logo End ***** -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Main Banner Area Start ***** -->
+  <section class="section main-banner" id="top" data-section="section1">
+      <video autoplay muted loop id="bg-video">
+          <source src="{% static 'Visab2b/assets/images/Fly - 35780.mp4' %}" type="video/mp4" />
+      </video>
+
+  <div class="video-overlay header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="caption">
+            <center><h2>Let's make your visas much easier and effectively</h2>
+              <p>Elit veniam deserunt duis consectetur mollit aute pariatur veniam culpa minim.
+              <a rel="nofollow" href="https://templatemo.com/page/1" target="_blank">Et pariatur labore eiusmod.</a>. 
+              This is a Bootstrap v5.1.3 layout. The video background is taken from Pexels website, a group of young people by 
+              <a rel="nofollow" href="https://www.pexels.com/@pressmaster" target="_blank">Pressmaster</a>.</p>
+            <div class="main-button-red">
+              <div class="border-button"><a href="home">Get Started</a></div>
+            </div></center>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+                        <!--Footer Start -->
+<div class="container-fluid border-top py-4" id="footer">
+  <!-- style="border-color: rgba(256, 256, 256, .1) !important;" -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <center><p>Copyright © 2022 Company. All rights reserved. 
+        <br>Powered by: <a href="https://skybookdigital.com/" target="_blank">SkyBook Digital</a></p></center>
+      </div>
+    </div>
+  </div>
+</div>
+                      <!--End Footer-->
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'Visab2b/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'Visab2b/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'Visab2b/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'Visab2b/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'Visab2b/assets/js/lightbox.js' %}"></script>
+    <script src="{% static 'Visab2b/assets/js/tabs.js' %}"></script>
+    <script src="{% static 'Visab2b/assets/js/video.js' %}"></script>
+    <script src="{% static 'Visab2b/assets/js/slick-slider.js' %}"></script>
+    <script src="{% static 'Visab2b/assets/js/custom.js' %}"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+          var
+          direction = section.replace(/#/, ''),
+          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+          reqSectionPos = reqSection.offset().top - 0;
+
+          if (isAnimate) {
+            $('body, html').animate({
+              scrollTop: reqSectionPos },
+            800);
+          } else {
+            $('body, html').scrollTop(reqSectionPos);
+          }
+
+        };
+
+        var checkSection = function checkSection() {
+          $('.section').each(function () {
+            var
+            $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+              var
+              currentId = $this.data('section'),
+              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+              reqLink.closest('li').addClass('active').
+              siblings().removeClass('active');
+            }
+          });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+          e.preventDefault();
+          showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+          checkSection();
+        });
+    </script>
+</body>
+
 
 {% endblock %}
-
-
 

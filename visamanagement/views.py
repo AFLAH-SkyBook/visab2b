@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from customer.models import Application, Document, Visa
+from customer.models import Application, Document, Visa, Country
 from visamanagement.decorators import allowed_users
 from visamanagement.forms import CountrySelectForm, ViewStatusForm
+
 
 def landing_page(request):
     return render(request,"landing_page.html")
@@ -34,7 +35,8 @@ def home_page(request):
     context = {
         "visas": visas,
         "form1": CountrySelectForm(),
-        "form2": ViewStatusForm()
+        "form2": ViewStatusForm(),
+        "countries": Country.objects.all()
     }
     return render(request,"home_page.html", context)
 

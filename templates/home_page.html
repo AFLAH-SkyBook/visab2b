@@ -6,129 +6,495 @@
 
 {% block content %}
 
-    <link href='https://fonts.googleapis.com/css?family=Baloo Bhaijaan' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js">
 
-    <section class="text-gray-600 body-font overflow-hidden">
-        <div class="container px-1 pb-2 mx-auto">
-            <div class="flex flex-col text-center w-full mb-10">
-                <img src="{% static 'assets/images/visa-b2b.png' %}" class="HmFont mx-auto">
-                <p class="lg:w-2/3 mx-auto leading-relaxed fs-5 text-pink-900 fw-bold fst-italic -mt-6">we make visas easy for you.</p>
-                {% comment %} <div class="flex mx-auto border-2 border-blue-500 rounded overflow-hidden mt-6">
-                <button class="py-1 px-4 bg-blue-500 text-white focus:outline-none">Monthly</button>
-                <button class="py-1 px-4 focus:outline-none">Annually</button>
-                </div> {% endcomment %}
-            </div>
-            <div class="flex flex-wrap -m-4">
-                <div class="xl:flex hidden p-4 xl:w-1/4 md:w-1/2 w-full">
-                </div>
-                <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-                    <div class="h-full p-8 rounded-lg border-2 border-blue-300 flex flex-col relative overflow-hidden bg-white">
-                        <h2 class="text-lg tracking-widest title-font mb-1 font-medium">SEARCH VISA</h2>
-                        
-                        <form class="" method="post">
+<title>VisaB2b</title>
 
-                            {% csrf_token %}
-                            {{ form1|crispy }}
-                        
-                        <button class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">Search
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
+<!-- Bootstrap core CSS -->
+<link href="{% static 'Visab2b/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 
-                        </form>
 
-                    </div>
-                </div>
-                <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-                    <div class="h-full p-8 rounded-lg border-2 border-blue-300 flex flex-col relative overflow-hidden bg-white">
-                        <h2 class="text-lg tracking-widest title-font mb-1 font-medium">KNOW VISA STATUS</h2>
-                        
-                        <form class="" method="post">
+<!-- Additional CSS Files -->
+<link rel="stylesheet" href="{% static 'Visab2b/assets/css/fontawesome.css' %}">
+<link rel="stylesheet" href="{% static 'Visab2b/assets/css/templatemo-edu-meeting.css' %}">
+<link rel="stylesheet" href="{% static 'Visab2b/assets/css/owl.css' %}">
+<link rel="stylesheet" href="{% static 'Visab2b/assets/css/lightbox.css' %}">
 
-                            {% csrf_token %}
-                            {{ form2|crispy }}
-                        
-                        <button type="submit" class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">View
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-
-                        </form>
-
-                    </div>
-                </div>
-                <div class="xl:flex hidden p-4 xl:w-1/4 md:w-1/2 w-full">
-                </div>
-            </div>
-
-            <!--start page wrapper -->
-            <div class="page-wrapper mt-4">
-                
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-
-                    <div class="carousel-inner">
-
-                        <div class="carousel-item active">
-                            <div class="cards-wrapper">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title mt-3 fw-bold">Type (country)</h5>
-                                        <p class="card-text lh-lg my-4">
-                                            Entry: __ <br>
-                                            Processing Time: __ hours <br>
-                                            Stay period: __ Days <br>
-                                            Validity: __ Days </p>
-                                        <a href="javascript:;" class="btn btn-inverse-primary"><i class='bx bx-paper-plane'></i>Apply for this visa</a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        {% for visa in visas %}
-                        <div class="carousel-item">
-                            <div class="cards-wrapper">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title mt-3 fw-bold">{{ visa.type }} ({{ visa.country_name }})</h5>
-                                        <p class="card-text lh-lg my-4">
-                                            Entry: {{ visa.entry }} <br>
-                                            Processing Time: {{ visa.processing_time }} hours <br>
-                                            Stay period: {{ visa.stay_period }} Days <br>
-                                            Validity: {{ visa.validity }} Days </p>
-                                        <a href="{% url 'customer:apply-visa' visa.id %}" class="btn btn-inverse-primary"><i class='bx bx-paper-plane'></i>Apply for this visa</a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        {% endfor %}
-
-                    </div>
-
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-
-                </div>
-
-            </div>
-            <!--end page wrapper -->
-
+<!--
+TemplateMo 569 Edu Meeting
+https://templatemo.com/tm-569-edu-meeting
+-->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+<link rel="stylesheet" href="{% static 'slider/css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'slider/css/owl.theme.default.min.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+<link rel="stylesheet" href="{% static 'slider/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'slider/css/slider.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'slider/css/search.css' %}"> -->
+</head>
+<body>
+  <!-- Sub Header -->
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content">
+            <p class="fa fa-phone">+012 345 6789<em>|</em> </p><p1 class="fa fa-envelope"> info@example.com</p1>
+          </div>
         </div>
+        <div class="col-lg-4 col-sm-4">
+          <div class="right-icons">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+              <li><a href="#"><i class="fa fa-youtube-square"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin-in"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+              <a href="#" class="logo">
+                <img src="{% static 'Visab2b/assets/images/visa-b2b.png' %}"  >
+              </a>
+                        <!-- ***** Logo End ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="#about">About Us</a></li>
+              <li class="scroll-to-section"><a href="#services">Services</a></li>
+              <li class="scroll-to-section"><a href="#blog">Blog</a></li>  
+              <li class="scroll-to-section"><div class="main-red-button"><a href="#contact">Contact Us</a></div></li> 
+            </ul>        
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="wrapper box">
+    <div class="single-box"><img alt="" src="{% static 'slider/images/4.jpeg' %}"></div>
+		<div class="single-box"><img alt="" src="{% static 'slider/images/slider-2.jpg' %}"></div>
+		<div class="single-box"><img alt="" src="{% static 'slider/images/2.jpg' %}"></div>
+		<div class="single-box"><img alt="" src="{% static 'slider/images/1.jpg' %}"></div>
+		<div class="single-box"><img alt="" src="{% static 'slider/images/4.webp' %}"></div>
+		<div class="single-box"><img alt="" src="{% static 'slider/images/2.jpeg' %}"></div>
+		<div class="single-box"><img alt="" src="{% static 'slider/images/3.jpeg' %}"></div>
+    <div class="single-box"><img alt="" src="{% static 'slider/images/slider-1.jpg' %}"></div>
+    <div class="container"> 
+    <div class=" d-flex justify-content-center"> 
+      <div class="input-field"> 
+      <form id="autoform">
+        <input  type="text" list="countrydata" id="country" name="country" autocomplete="off" placeholder="Search For Your Country..." class="form-control" /> 
+        <button class="btn btn1"><i class="fa fa-search"></i></button>
+        <div>
+        <h1 style="color: rgb(255, 255, 255); background-color: #00000074; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:medium; text-align: center; width: fit-content; height: fit-content; margin-top: -78px; margin-left: 90px;">
+          <b>KNOW YOUR VISA STATUS .</b>
+        </h1>
+        </div>  
+        <datalist id="countrydata">
+          {% for country in countries %}
+          <option>{{country}}</option>
+          {% endfor %}
+        </datalist>
+      </form>
+        <!-- <label for="country">country</label>
+        <input type="text"
+        list="countrydata"
+        id="country" name="country"
+        size="50"
+        autocomplete="off" />  -->
+      </div> 
+    </div> 
+  </div> 
+</div>
 
+    <script src="{% static 'slider/js/jquery.min.js'%}"></script>
+    <script src="{% static 'slider/js/popper.js'%}"></script>
+    <script src="{% static 'slider/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'slider/js/owl.carousel.min.js'%}"></script>
+    <script src="{% static 'slider/js/main.js'%}"></script>
 
-
-    </section>
-
-    
-
+                            <!--Footer Start -->
+<div class="container-fluid border-top py-4" id="footer">
+  <!-- style="border-color: rgba(256, 256, 256, .1) !important;" -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <center><p>Copyright © 2022 Company. All rights reserved. 
+        <br>Powered by: <a href="https://skybookdigital.com/" target="_blank">SkyBook Digital</a></p></center>
+      </div>
+    </div>
+  </div>
+</div>
+                      <!--End Footer-->
 {% endblock content %}
+
+
+
+<!-- <link href='https://fonts.googleapis.com/css?family=Baloo Bhaijaan' rel='stylesheet'>
+<section class="text-gray-600 body-font overflow-hidden">
+    <div class="container px-1 pb-2 mx-auto">
+        <div class="flex flex-col text-center w-full mb-10">
+            <img src="{% static 'assets/images/visa-b2b.png' %}" class="HmFont mx-auto">
+            <p class="lg:w-2/3 mx-auto leading-relaxed fs-5 text-pink-900 fw-bold fst-italic -mt-6">we make visas easy for you.</p>
+            {% comment %} <div class="flex mx-auto border-2 border-blue-500 rounded overflow-hidden mt-6">
+            <button class="py-1 px-4 bg-blue-500 text-white focus:outline-none">Monthly</button>
+            <button class="py-1 px-4 focus:outline-none">Annually</button>
+            </div> {% endcomment %}
+        </div>
+        <div class="flex flex-wrap -m-4">
+            <div class="xl:flex hidden p-4 xl:w-1/4 md:w-1/2 w-full">
+            </div>
+            <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
+                <div class="h-full p-8 rounded-lg border-2 border-blue-300 flex flex-col relative overflow-hidden bg-white">
+                    <h2 class="text-lg tracking-widest title-font mb-1 font-medium">SEARCH VISA</h2>
+                    
+                    <form class="" method="post">
+
+                        {% csrf_token %}
+                        {{ form1|crispy }}
+                    
+                    <button class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">Search
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                            <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                    </form>
+                </div>
+            </div>
+            <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
+                <div class="h-full p-8 rounded-lg border-2 border-blue-300 flex flex-col relative overflow-hidden bg-white">
+                    <h2 class="text-lg tracking-widest title-font mb-1 font-medium">KNOW VISA STATUS</h2>
+                    
+                    <form class="" method="post">
+
+                        {% csrf_token %}
+                        {{ form2|crispy }}
+                    
+                    <button type="submit" class="flex items-center mt-auto text-white bg-blue-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-blue-600 rounded">View
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                            <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+
+                    </form>
+
+                </div>
+            </div>
+            <div class="xl:flex hidden p-4 xl:w-1/4 md:w-1/2 w-full">
+            </div>
+        </div> -->
+        <!--start page wrapper -->
+        <!-- <div class="page-wrapper mt-4">           
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="cards-wrapper">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title mt-3 fw-bold">Type (country)</h5>
+                                    <p class="card-text lh-lg my-4">
+                                        Entry: __ <br>
+                                        Processing Time: __ hours <br>
+                                        Stay period: __ Days <br>
+                                        Validity: __ Days </p>
+                                    <a href="javascript:;" class="btn btn-inverse-primary"><i class='bx bx-paper-plane'></i>Apply for this visa</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {% for visa in visas %}
+                    <div class="carousel-item">
+                        <div class="cards-wrapper">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title mt-3 fw-bold">{{ visa.type }} ({{ visa.country_name }})</h5>
+                                    <p class="card-text lh-lg my-4">
+                                        Entry: {{ visa.entry }} <br>
+                                        Processing Time: {{ visa.processing_time }} hours <br>
+                                        Stay period: {{ visa.stay_period }} Days <br>
+                                        Validity: {{ visa.validity }} Days </p>
+                                    <a href="{% url 'customer:apply-visa' visa.id %}" class="btn btn-inverse-primary"><i class='bx bx-paper-plane'></i>Apply for this visa</a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div> -->
+     <!--end page wrapper -->
+ <!-- </div>
+</section> -->
+
+<!--slider-->
+
+
+<!-- <div class="home-slider owl-carousel js-fullheight">
+    <div class="slider-item js-fullheight" style="background-image:url({% static 'slider/images/slider-1.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>KNOW YOUR VISA STATUS</h2>
+            <center><section class="main">
+                <form class="search" method="post" action="index.html" >
+                  <input type="text" name="q" placeholder="Search..." />
+                  <ul class="results" >
+                    <li><a href="#">Country 1<br /><span>Description...</span></a></li>
+                    <li><a href="#">Country 2<br /><span>Description...</span></a></li>
+                    <li><a href="#">Country 3<br /></a></li>
+                    <li><a href="#">Country 4<br /></a></li>
+                  </ul>
+                </form>
+            </section></center> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item js-fullheight" style="background-image:url({% static 'slider/images/slider-2.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>KNOW YOUR VISA STATUS.</h2>
+            <section class="main">
+                <form class="search" method="post" action="index.html" >
+                  <input type="text" name="q" placeholder="Search..." />
+                  <ul class="results" >
+                    <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #4</a></li>
+                  </ul>
+                </form>
+            </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item js-fullheight" style="background-image:url({% static 'slider/images/1.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>KNOW VISA STATUS</h2>
+              <section class="main">
+                <form class="search" method="post" action="index.html" >
+                  <input type="text" name="q" placeholder="Search..." />
+                  <ul class="results" >
+                    <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #4</a></li>
+                  </ul>
+                </form>
+            </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item js-fullheight" style="background-image:url({% static 'slider/images/2.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>KNOW VISA STATUS</h2>
+                 <section class="main">
+                <form class="search" method="post" action="index.html" >
+                  <input type="text" name="q" placeholder="Search..." />
+                  <ul class="results" >
+                    <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #4</a></li>
+                  </ul>
+                </form>
+            </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item js-fullheight" style="background-image:url({% static 'slider/images/3.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>KNOW VISA STATUS</h2>
+                 <section class="main">
+                <form class="search" method="post" action="index.html" >
+                  <input type="text" name="q" placeholder="Search..." />
+                  <ul class="results" >
+                    <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #4</a></li>
+                  </ul>
+                </form>
+            </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item js-fullheight" style="background-image:url({% static 'slider/images/1.jpeg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>KNOW VISA STATUS</h2>
+                 <section class="main">
+                <form class="search" method="post" action="index.html" >
+                  <input type="text" name="q" placeholder="Search..." />
+                  <ul class="results" >
+                    <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #4</a></li>
+                  </ul>
+                </form>
+            </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="slider-item js-fullheight" style="background-image:url({% static 'slider/images/4.webp' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>KNOW VISA STATUS</h2>
+                 <section class="main">
+                <form class="search" method="post" action="index.html" >
+                  <input type="text" name="q" placeholder="Search..." />
+                  <ul class="results" >
+                    <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #4</a></li>
+                  </ul>
+                </form>
+            </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item js-fullheight" style="background-image:url({% static 'slider/images/2.jpeg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>KNOW VISA STATUS</h2>
+                 <section class="main">
+                <form class="search" method="post" action="index.html" >
+                  <input type="text" name="q" placeholder="Search..." />
+                  <ul class="results" >
+                    <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #4</a></li>
+                  </ul>
+                </form>
+            </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item js-fullheight" style="background-image:url({% static 'slider/images/3.jpeg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>KNOW VISA STATUS</h2>
+                 <section class="main">
+                <form class="search" method="post" action="index.html" >
+                  <input type="text" name="q" placeholder="Search..." />
+                  <ul class="results" >
+                    <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #4</a></li>
+                  </ul>
+                </form>
+            </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item js-fullheight" style="background-image:url({% static 'slider/images/4.jpeg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>KNOW VISA STATUS</h2>
+                 <section class="main">
+                <form class="search" method="post" action="index.html" >
+                  <input type="text" name="q" placeholder="Search..." />
+                  <ul class="results" >
+                    <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+                    <li><a href="index.html">Search Result #4</a></li>
+                  </ul>
+                </form>
+            </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div> -->
+
+    <!-- ***** Header Area End ***** -->
