@@ -4,34 +4,206 @@
 {% block title %}VisaB2b{% endblock title %}
 
 {% block content %}
+<head>
 
-    <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-            <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="" src="{% static 'assets/images/picture_2_travel.jpeg' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-            <div class="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
+  <title>VisaB2b</title>
 
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Let's make your visas much easier and effectively</h1>
-                <p class="sm:mb-8 mb-2 leading-relaxed">Kickstarter biodiesel roof party wayfarers cold-pressed. Palo santo live-edge tumeric scenester copper mug flexitarian. Prism vice offal plaid everyday carry. Gluten-free chia VHS squid listicle artisan.</p>
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-                <div class="flex w-full justify-center items-end">
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="{% static 'corousel/assets/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static 'corousel/assets/css/templatemo-woox-travel.css' %}">
+  <link rel="stylesheet" href="{% static 'corousel/assets/css/owl.css' %}">
+  <link rel="stylesheet" href="{% static 'corousel/assets/css/animate.css' %}">
+  <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css' %}"/>
+<!--
 
-                    <!--<div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
-                        <label for="hero-field" class="leading-7 text-sm text-gray-600">Placeholder</label>
-                        <input type="text" id="hero-field" name="hero-field" class="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-pink-200 focus:bg-transparent border border-gray-300 focus:border-pink-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                    </div>-->
-                    <a href="{% url 'home-page' %}"><button class="flex-shrink-0 text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg mt-2 sm:mt-10">Get Started</button></a>
+TemplateMo 580 Woox Travel
 
-                </div>
-                
+https://templatemo.com/tm-580-woox-travel-->
 
-            </div>
+</head>
 
+<body>
+
+<!-- ***** Preloader Start ***** -->
+<div id="js-preloader" class="js-preloader">
+  <div class="preloader-inner">
+    <span class="dot"></span>
+    <div class="dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<div class="container-fluid" id="top-header">
+  <div class="row py-2 px-lg-5">
+    <div class="col-lg-6 text-center ">
+        <div class="d-inline-flex" id="header-info">
+          <small><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</small>
+          <!-- style="margin-left: -200px;" -->
+          <small class="px-3"  id="header-info2">|</small>
+          <!-- style="margin-left: -30px;" -->
+          <small><i class="fa fa-envelope mr-2"  id="header-info3"></i>info@example.com</small>
         </div>
-    </section>
+    </div>
+    <div class="col-lg-6" >
+          <div class="d-inline-flex" id="social-info">
+          <!-- align-items-right" style="margin-left: 300px;" -->
+            <a class=" px-2" id="social-info" href="">
+            <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class=" px-2" id="social-info" href="">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a class=" px-2" id="social-info" href="">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a class="px-2" id="social-info" href="">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a class="px-2" id="social-info" href="">
+              <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- ***** Menu Start ***** -->
+  <div class="container-fluid p-0">
+    <nav class="navbar bg-white">
+      <a href="#" class="logo">
+        <img src="{% static 'visa/assets/images/visa-b2b.png' %}" alt="">
+      </a>
+    </nav>
+  </div>
+</header>
+<!-- style="width: 120px; height: 80px; margin-left: 580px; margin-top: -10px;" -->
+  <!-- style="margin-top: -10px; margin-bottom: -10px;" -->
+  <!-- style="width: 100px; height: 80px; margin-left: 580px;" -->
+<!-- ***** Header Area End ***** -->
+
+<!-- ***** Main Banner Area Start ***** -->
+<section id="section-1">
+  <div class="content-slider" id="overlay">
+    <input type="radio" id="banner1" class="sec-1-input" name="banner" checked>
+    <input type="radio" id="banner2" class="sec-1-input" name="banner">
+    <input type="radio" id="banner3" class="sec-1-input" name="banner">
+    <input type="radio" id="banner4" class="sec-1-input" name="banner">
+    <div class="slider">
+      <div id="top-banner-1" class="banner">
+        <div class="banner-inner-wrapper header-text">
+          <div class="main-caption">
+          <b><h2 style="margin-top: 10%;font-family: 'Montserrat',sans-serif; font-size: 25px;">Let's make your visas much easier and effectively</h2></b>
+            <div class="border-button"><a href="home">Get Started</a></div>
+          </div>
+        </div>
+      </div>
+      <div id="top-banner-2" class="banner">
+        <div class="banner-inner-wrapper header-text">
+          <div class="main-caption">
+          <b><h2 style="margin-top: 10%;font-family: 'Montserrat',sans-serif; font-size: 25px;">Let's make your visas much easier and effectively</h2></b>
+            <div class="border-button"><a href="home">Get Started</a></div>
+          </div>
+        </div>
+      </div>
+      <div id="top-banner-3" class="banner">
+        <div class="banner-inner-wrapper header-text">
+          <div class="main-caption">
+          <b><h2 style="margin-top: 10%;font-family: 'Montserrat',sans-serif; font-size: 25px;">Let's make your visas much easier and effectively</h2></b>
+            <div class="border-button"><a href="home">Get Started</a></div>
+          </div>
+        </div>
+      </div>
+      <div id="top-banner-4" class="banner">
+        <div class="banner-inner-wrapper header-text">
+          <div class="main-caption">
+            <b><h2 style="margin-top: 10%;font-family: 'Montserrat',sans-serif; font-size: 25px;">Let's make your visas much easier and effectively</h2></b>
+            <div class="border-button"><a href="home">Get Started</a></div>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+</section>
+<!-- ***** Main Banner Area End ***** -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p>Copyright © 2022 Company. All rights reserved. 
+        <br>Powered by: <a href="https://skybookdigital.com/" target="_blank">SkyBook Digital</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'corousel/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'corousel/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'corousel/assets/js/isotope.min.js' %}"></script>
+<script src="{% static 'corousel/assets/js/owl-carousel.js' %}"></script>
+<script src="{% static 'corousel/assets/js/wow.js' %}"></script>
+<script src="{% static 'corousel/assets/js/tabs.js' %}"></script>
+<script src="{% static 'corousel/assets/js/popup.js' %}"></script>
+<script src="{% static 'corousel/assets/js/custom.js' %}"></script>
+
+<script>
+  function bannerSwitcher() {
+    next = $('.sec-1-input').filter(':checked').next('.sec-1-input');
+    if (next.length) next.prop('checked', true);
+    else $('.sec-1-input').first().prop('checked', true);
+  }
+
+  var bannerTimer = setInterval(bannerSwitcher, 5000);
+
+  $('nav .controls label').click(function() {
+    clearInterval(bannerTimer);
+    bannerTimer = setInterval(bannerSwitcher, 5000)
+  });
+</script>
+
+</body>
 
 {% endblock %}
 
 
 
+<!-- <section class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
+
+        <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="" src="{% static 'assets/images/picture_2_travel.jpeg' %}">
+
+        <div class="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
+
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Let's make your visas much easier and effectively</h1>
+            <p class="sm:mb-8 mb-2 leading-relaxed">Kickstarter biodiesel roof party wayfarers cold-pressed. Palo santo live-edge tumeric scenester copper mug flexitarian. Prism vice offal plaid everyday carry. Gluten-free chia VHS squid listicle artisan.</p>
+
+            <div class="flex w-full justify-center items-end"> -->
+
+                <!--<div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
+                    <label for="hero-field" class="leading-7 text-sm text-gray-600">Placeholder</label>
+                    <input type="text" id="hero-field" name="hero-field" class="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-pink-200 focus:bg-transparent border border-gray-300 focus:border-pink-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>-->
+                <!-- <a href="{% url 'home-page' %}"><button class="flex-shrink-0 text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg mt-2 sm:mt-10">Get Started</button></a>
+
+            </div>
+            
+
+        </div>
+
+    </div>
+</section> -->

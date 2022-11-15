@@ -40,6 +40,7 @@
 
                                                                                                         {% for visa in visas %}
                                                                                                         <p>Visa applicant: {{ visa.name }}</p>
+                                                                                                        <p>Relation: {{ visa.relation_to_applicant }}</p>
                                                                                                         <p>Status: {{ visa.status }}</p>
 
                                                                                                         {% if visa.id|is_approved %}
