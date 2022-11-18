@@ -156,14 +156,14 @@ body {
 }
 
 .main-button-red a {
-  font-size: 13px;
+  font-size: 22px;
   color: #fff;
   background-color: #008CFF;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 22px;
-  font-weight: 500;
-  text-transform: uppercase;
+  font-weight: 600;
+  text-transform: none;
   transition: all .3s;
 }
 
@@ -1821,6 +1821,7 @@ responsive
 
   .main-banner .caption .main-button-red {
     margin-top: 15px;
+    font-size: 18px;
   }
 
   .services {

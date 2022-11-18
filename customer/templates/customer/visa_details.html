@@ -4,35 +4,52 @@
 {% block title %}Visa Details - {{ country }} {% endblock title %}
 
 {% block content %}
+        <link rel="stylesheet" href="{% static 'Visab2b/assets/css/fontawesome.css' %}">
 
         {% comment %} <h1 class="text-lg text-center mt-5"> This is the visa details of {{ country }}</h1> {% endcomment %}
         
-        <div class="container px-2 px-lg-5">
-            <!-- Heading Row-->
-            <div class="row gx-4 gx-lg-5 align-items-center mt-4">
-                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'assets/images/visa-bg.jpg' %}" alt="..."></div>
-                <div class="col-lg-5">
-                    <h1 class="font-bold">{{ country.name }} visa</h1>
-                    <p class="fs-5 mb-6">Processing time: {{ country.min_processing_time }} to {{ country.max_processing_time }} days <br> Starting from: &#8377; {{ country.starting_from }}/-</p>
-                    <a class="btn btn-primary" href="tel:7736952527">Make a enquiry call..</a>
+            <div class="w-full bg-blue-500 text-white flex justify-between items-center px-5 py-2">
+                <div class="">
+                    <p class="fa fa-phone border-r-2 pr-2 mr-2 border-white mb-0">+012 345 6789 </p><p class="fa fa-envelope text-white mb-0"> info@example.com</p>
+                </div>
+                <div>
+                    <ul  class="flex gap-2 m-0">
+                      <li class=""><a href="#"><i class="text-white fa fa-facebook-square"></i></a></li>
+                      <li class=""><a href="#"><i class="text-white fa fa-twitter-square"></i></a></li>
+                      <li class=""><a href="#"><i class="text-white fa fa-youtube-square"></i></a></li>
+                      <li class=""><a href="#"><i class="text-white fa fa-linkedin-in"></i></a></li>
+                    </ul>
                 </div>
             </div>
-            <!-- Call to Action-->
-            {% comment %} <div class="card text-white bg-primary my-1 py-1 text-center">
-                <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
-            </div> {% endcomment %}
-            
-        </div>
 
-        <section class="text-gray-600 body-font">
-            <div class="container px-2 py-8 mx-auto">
-                <div class="flex flex-wrap -m-4">
+            <div class="w-full h-full">
+                <img class="w-full h-96 object-cover object-top p-0 m-0" src="{% static 'assets/images/ria.png' %}" alt="logo">
+            </div>
+
+            <div class="w-full flex justify-center relative">
+                <div class="w-full md:w-1/2 bg-white px-5 py-4 rounded-lg shadow-lg absolute -top-14">
+                    <h1 class="font-bold">{{ country.name }} visa</h1>
+                    <div class="flex gap-5">
+                        <div class="flex flex-col">
+                            <p class="text-md text-gray-500 mb-0">Processing time</p>
+                            <p class="text-2xl text-gray-800 mb-0">{{ country.min_processing_time }} to {{ country.max_processing_time }} days</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-md text-gray-500 mb-0">Starting from </p>
+                            <p class="text-2xl text-gray-800 mb-0">&#8377; {{ country.starting_from }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-36 w-full flex flex-col items-center">
+                <h1>Popular {{ country.name }} visas</h1>
+                <div class="w-full flex flex-wrap justify-center">
 
                     {% for visa in visas %}
                     <div class="p-4 md:w-1/2 lg:w-1/3">
-                        <div class="h-full border-2 border-blue-900 border-opacity-60 rounded-lg overflow-hidden bg-white">
+                        <div class="h-full  bg-white p-2 rounded-lg shadow-lg bg-white">
                             <div class="p-6">
-                                <h2 class="tracking-widest text-lg title-font text-gray-400 mb-1">{{ visa.country_name }}</h2>
                                 <h4 class="title-font font-medium text-gray-900 mb-3 fw-bold">{{ visa.type }}</h4>
                                 <p class="leading-relaxed mb-3 text-lg lh-lg"> Processing Time: {{ visa.processing_time }} hours<br>
                                     Stay period: {{ visa.stay_period }} Days <br>
@@ -40,12 +57,8 @@
                                     Entry: {{ visa.entry }} <br><br>
                                 </p>
                                 <div class="flex items-center flex-wrap ">
-                                    <a href="{% url 'customer:apply-visa' visa.id %}" class="text-yellow-500 inline-flex items-center md:mb-2 lg:mb-0">Apply for this Visa
-                                    <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M5 12h14"></path>
-                                        <path d="M12 5l7 7-7 7"></path>
-                                    </svg>
-                                    </a>
+                                    <a href="{% url 'customer:apply-visa' visa.id %}" class="btn btn-inverse-primary "><i class="bx bx-paper-plane"></i>Apply for this visa</a>
+                                    
                                     <span class="text-gray-400 mr-0 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-xl pr-1 py-1 border-gray-200">
                                     {{ visa.fees }}
                                     </span>
@@ -62,139 +75,189 @@
             </div>
 
 
-            <div class="container py-2">
-                <h3 class="font-weight-light text-center text-pink-900 font-bold py-3">Applying for {{ country }} Visa through us is this simple</h3>
-                <!-- timeline item 1 -->
-                <div class="row">
-                    <!-- timeline item 1 left dot -->
-                    <div class="col-auto text-center flex-column d-none d-sm-flex">
-                        <div class="row h-50">
-                            <div class="col">&nbsp;</div>
-                            <div class="col">&nbsp;</div>
-                        </div>
-                        <h5 class="m-2">
-                        <span class="badge rounded-pill bg-dark">1</span>
-                        </h5>
-                        <div class="row h-50">
-                            <div class="col border-end border-dark">&nbsp;</div>
-                            <div class="col border-start border-dark">&nbsp;</div>
-                        </div>
-                    </div>
-                    <!-- timeline item 1 event content -->
-                    <div class="col py-2">
-                        <div class="card radius-15">
-                            <div class="card-body">
-                                <h5 class="card-title text-pink-700">Apply online with your primary details</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/row-->
-                <!-- timeline item 2 -->
-                <div class="row">
-                    <div class="col-auto text-center flex-column d-none d-sm-flex">
-                        <div class="row h-50">
-                            <div class="col border-end border-dark">&nbsp;</div>
-                            <div class="col border-start border-dark">&nbsp;</div>
-                        </div>
-                        <h5 class="m-2">
-                        <span class="badge rounded-pill bg-dark">2</span>
-                        </h5>
-                        <div class="row h-50">
-                            <div class="col border-end border-dark">&nbsp;</div>
-                            <div class="col border-start border-dark">&nbsp;</div>
-                        </div>
-                    </div>
-                    <div class="col py-2">
-                        <div class="card border-primary shadow radius-15">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3 text-pink-700">Our staff will contact you for the documents verification</h5>
-                                <button class="btn btn-sm btn-outline-danger" type="button" data-bs-target="#t2_details" data-bs-toggle="collapse">Show Details ▼</button>
-                                <div class="collapse border" id="t2_details">
-                                    <div class="p-2 text-monospace">
-                                        <div><i class="bx bx-bookmark"></i> Receive a verification call</div>
-                                        <div><i class="bx bx-bookmark"></i> Submit the required documents of each visa applicant manually or online</div>
-                                        <div><i class="bx bx-bookmark"></i> Check the status using application id and phone number of the primary applicant</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/row-->
-                <!-- timeline item 3 -->
-                <div class="row">
-                    <div class="col-auto text-center flex-column d-none d-sm-flex">
-                        <div class="row h-50">
-                            <div class="col border-end border-dark">&nbsp;</div>
-                            <div class="col border-start border-dark">&nbsp;</div>
-                        </div>
-                        <h5 class="m-2">
-                        <span class="badge rounded-pill bg-dark">3</span>
-                        </h5>
-                        <div class="row h-50">
-                            <div class="col border-end border-dark">&nbsp;</div>
-                            <div class="col border-start border-dark">&nbsp;</div>
-                        </div>
-                    </div>
-                    <div class="col py-2">
-                        <div class="card radius-15">
-                            <div class="card-body">
-                                <h5 class="card-title text-pink-700">Know your visa status with your application id</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/row-->
-                <!-- timeline item 4 -->
-                <div class="row">
-                    <div class="col-auto text-center flex-column d-none d-sm-flex">
-                        <div class="row h-50">
-                            <div class="col border-end border-dark">&nbsp;</div>
-                            <div class="col border-start border-dark">&nbsp;</div>
-                        </div>
-                        <h5 class="m-2">
-                        <span class="badge rounded-pill bg-dark">4</span>
-                        </h5>
-                        <div class="row h-50">
-                            <div class="col">&nbsp;</div>
-                            <div class="col">&nbsp;</div>
-                        </div>
-                    </div>
-                    <div class="col py-2">
-                        <div class="card radius-15">
-                            <div class="card-body">
-                                <h5 class="card-title text-pink-700">Download your visa from the portal when approved</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/row-->
-
-
-                <div class="col-md-8 mx-auto mt-4 mb-14">
-                    <h6 class="-mb-2 ml-4 text-green-900 font-bold">Documents required for {{ country }} visa</h6>
-                    <hr/>
-                    <div class="card">
-                        <div class="card-body">
-                            <ul class="list-group">
-    
-                                {% for need in needs %}
-                                <li class="list-group-item text-green-700"><i class='bx bx-file font-18 align-middle me-1 mb-1'></i> {{ need.need }}</li>
-                                {% endfor %}
-    
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-
-            
-        </section>
-
-
-
 {% endblock content %}
+
+
+<div class="container px-2 px-lg-5">
+    <!-- Heading Row-->
+    <div class="row gx-4 gx-lg-5 align-items-center mt-4">
+        <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'assets/images/visa-bg.jpg' %}" alt="..."></div>
+        <div class="col-lg-5">
+            <h1 class="font-bold">{{ country.name }} visa</h1>
+            <p class="fs-5 mb-6">Processing time: {{ country.min_processing_time }} to {{ country.max_processing_time }} days <br> Starting from: &#8377; {{ country.starting_from }}/-</p>
+            <a class="btn btn-primary" href="tel:7736952527">Make a enquiry call..</a>
+        </div>
+    </div>
+    <!-- Call to Action-->
+    {% comment %} <div class="card text-white bg-primary my-1 py-1 text-center">
+        <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
+    </div> {% endcomment %}
+    
+</div>
+
+<section class="text-gray-600 body-font">
+    <div class="container px-2 py-8 mx-auto">
+        <div class="flex flex-wrap -m-4">
+
+            {% for visa in visas %}
+            <div class="p-4 md:w-1/2 lg:w-1/3">
+                <div class="h-full border-2 border-blue-900 border-opacity-60 rounded-lg overflow-hidden bg-white">
+                    <div class="p-6">
+                        <h2 class="tracking-widest text-lg title-font text-gray-400 mb-1">{{ visa.country_name }}</h2>
+                        <h4 class="title-font font-medium text-gray-900 mb-3 fw-bold">{{ visa.type }}</h4>
+                        <p class="leading-relaxed mb-3 text-lg lh-lg"> Processing Time: {{ visa.processing_time }} hours<br>
+                            Stay period: {{ visa.stay_period }} Days <br>
+                            Validity: {{ visa.validity }} Days <br>
+                            Entry: {{ visa.entry }} <br><br>
+                        </p>
+                        <div class="flex items-center flex-wrap ">
+                            <a href="{% url 'customer:apply-visa' visa.id %}" class="btn btn-inverse-primary"><i class="bx bx-paper-plane"></i>Apply for this visa</a>
+                            
+                            <span class="text-gray-400 mr-0 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-xl pr-1 py-1 border-gray-200">
+                            {{ visa.fees }}
+                            </span>
+                            <span class="text-gray-400 inline-flex items-center leading-none text-xl">
+                            $
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+    <div class="container py-2">
+        <h3 class="font-weight-light text-center text-pink-900 font-bold py-3">Applying for {{ country }} Visa through us is this simple</h3>
+        <!-- timeline item 1 -->
+        <div class="row">
+            <!-- timeline item 1 left dot -->
+            <div class="col-auto text-center flex-column d-none d-sm-flex">
+                <div class="row h-50">
+                    <div class="col">&nbsp;</div>
+                    <div class="col">&nbsp;</div>
+                </div>
+                <h5 class="m-2">
+                <span class="badge rounded-pill bg-dark">1</span>
+                </h5>
+                <div class="row h-50">
+                    <div class="col border-end border-dark">&nbsp;</div>
+                    <div class="col border-start border-dark">&nbsp;</div>
+                </div>
+            </div>
+            <!-- timeline item 1 event content -->
+            <div class="col py-2">
+                <div class="card radius-15">
+                    <div class="card-body">
+                        <h5 class="card-title text-pink-700">Apply online with your primary details</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/row-->
+        <!-- timeline item 2 -->
+        <div class="row">
+            <div class="col-auto text-center flex-column d-none d-sm-flex">
+                <div class="row h-50">
+                    <div class="col border-end border-dark">&nbsp;</div>
+                    <div class="col border-start border-dark">&nbsp;</div>
+                </div>
+                <h5 class="m-2">
+                <span class="badge rounded-pill bg-dark">2</span>
+                </h5>
+                <div class="row h-50">
+                    <div class="col border-end border-dark">&nbsp;</div>
+                    <div class="col border-start border-dark">&nbsp;</div>
+                </div>
+            </div>
+            <div class="col py-2">
+                <div class="card border-primary shadow radius-15">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3 text-pink-700">Our staff will contact you for the documents verification</h5>
+                        <button class="btn btn-sm btn-outline-danger" type="button" data-bs-target="#t2_details" data-bs-toggle="collapse">Show Details ▼</button>
+                        <div class="collapse border" id="t2_details">
+                            <div class="p-2 text-monospace">
+                                <div><i class="bx bx-bookmark"></i> Receive a verification call</div>
+                                <div><i class="bx bx-bookmark"></i> Submit the required documents of each visa applicant manually or online</div>
+                                <div><i class="bx bx-bookmark"></i> Check the status using application id and phone number of the primary applicant</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/row-->
+        <!-- timeline item 3 -->
+        <div class="row">
+            <div class="col-auto text-center flex-column d-none d-sm-flex">
+                <div class="row h-50">
+                    <div class="col border-end border-dark">&nbsp;</div>
+                    <div class="col border-start border-dark">&nbsp;</div>
+                </div>
+                <h5 class="m-2">
+                <span class="badge rounded-pill bg-dark">3</span>
+                </h5>
+                <div class="row h-50">
+                    <div class="col border-end border-dark">&nbsp;</div>
+                    <div class="col border-start border-dark">&nbsp;</div>
+                </div>
+            </div>
+            <div class="col py-2">
+                <div class="card radius-15">
+                    <div class="card-body">
+                        <h5 class="card-title text-pink-700">Know your visa status with your application id</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/row-->
+        <!-- timeline item 4 -->
+        <div class="row">
+            <div class="col-auto text-center flex-column d-none d-sm-flex">
+                <div class="row h-50">
+                    <div class="col border-end border-dark">&nbsp;</div>
+                    <div class="col border-start border-dark">&nbsp;</div>
+                </div>
+                <h5 class="m-2">
+                <span class="badge rounded-pill bg-dark">4</span>
+                </h5>
+                <div class="row h-50">
+                    <div class="col">&nbsp;</div>
+                    <div class="col">&nbsp;</div>
+                </div>
+            </div>
+            <div class="col py-2">
+                <div class="card radius-15">
+                    <div class="card-body">
+                        <h5 class="card-title text-pink-700">Download your visa from the portal when approved</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/row-->
+
+
+        <div class="col-md-8 mx-auto mt-4 mb-14">
+            <h6 class="-mb-2 ml-4 text-green-900 font-bold">Documents required for {{ country }} visa</h6>
+            <hr/>
+            <div class="card">
+                <div class="card-body">
+                    <ul class="list-group">
+
+                        {% for need in needs %}
+                        <li class="list-group-item text-green-700"><i class='bx bx-file font-18 align-middle me-1 mb-1'></i> {{ need.need }}</li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    
+</section>

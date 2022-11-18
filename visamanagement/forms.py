@@ -7,8 +7,12 @@ class CountrySelectForm(forms.ModelForm):
         model = Visa
         fields = ['country_name']
         widgets = {
-            'country_name': forms.Select(attrs={'class':'form-control form-select'})
+            'country_name': forms.Select(attrs={'class':'form-select w-full'})
         }
+
+    def __init__(self, *args, **kwargs):
+        super(CountrySelectForm, self).__init__(*args, **kwargs)
+        self.fields['country_name'].empty_label = 'Select Country'
 
 class ViewStatusForm(forms.Form):
     application_id = forms.IntegerField()

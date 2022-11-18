@@ -114,6 +114,10 @@
         text-align: center;
         color: #5e94c1
     }
+    .visa-form{
+        margin-top: 300px;
+        display: flex;
+    }
     .form-control{
         height: 50px;
         width: 400px;
@@ -122,7 +126,7 @@
         border-radius: 20px;
         font-size: 12px;
         position: relative;
-        margin-top: 320px;
+        /* margin-top: 320px; */
         padding-left: 35px;
     }
     .btn1{
@@ -197,3 +201,4 @@
         background-color: #036;
         outline: 0 none;
       }
+      
